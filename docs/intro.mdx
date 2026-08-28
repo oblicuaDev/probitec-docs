@@ -1,0 +1,35 @@
+---
+sidebar_position: 1
+title: ¿Qué es Oblicua RFID?
+---
+
+# ¿Qué es Oblicua RFID?
+
+Oblicua RFID es la solución de control de inventarios por radiofrecuencia (RFID) de Oblicua. Está compuesta por **dos aplicaciones que trabajan juntas**:
+
+| Aplicación | Dónde corre | Quién la usa | Para qué |
+|---|---|---|---|
+| **App móvil** | Terminal Zebra TC22 + lector RFD40 (Android) | Operarios de bodega | Contar el inventario físico con RFID y enviarlo a verificación |
+| **Plataforma web** | Navegador (escritorio) | Administradores / supervisores / auditores | Conciliar cada conteo contra lo esperado, resolver diferencias y cerrar el inventario |
+
+Ambas comparten la misma base de datos (Supabase) y se conectan al ERP **Siigo** para traer las bodegas disponibles y los documentos (facturas, notas crédito) que sustentan las diferencias encontradas.
+
+## La idea central
+
+La app **no concilia ni decide nada** — solo cuenta y guarda. Todo conteo que llega desde la app queda con estado **Pendiente**. Es en la **plataforma web** donde ese conteo se compara contra el inventario esperado, se investigan las diferencias y finalmente se cierra el inventario.
+
+```
+   TC22 (operario)                    Web (administrador)
+ ┌────────────────────┐        ┌──────────────────────────────┐
+ │ 1. Contar con RFID  │  ───▶  │ 2. Conciliar automáticamente  │
+ │    (app móvil)      │        │ 3. Validar / ajustar          │
+ └────────────────────┘        │ 4. Cerrar el inventario        │
+                                 └──────────────────────────────┘
+```
+
+Para el recorrido completo, paso a paso, ve a **[Flujo de trabajo](/docs/flujo-de-trabajo)**.
+
+## Manuales por aplicación
+
+- **[App móvil](/docs/app-movil/inicio-de-sesion)** — cómo iniciar sesión, seleccionar bodega, contar y guardar un conteo.
+- **[Plataforma web](/docs/plataforma-web/inicio-de-sesion)** — cómo conciliar, validar, ajustar, cerrar y consultar el histórico.

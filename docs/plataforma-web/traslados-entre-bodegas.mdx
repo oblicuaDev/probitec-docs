@@ -1,0 +1,37 @@
+---
+sidebar_position: 7.5
+title: Traslados entre bodegas
+---
+
+# Traslados entre bodegas
+
+Investigamos la API de Siigo a fondo (documentación oficial + pruebas directas contra la cuenta real) y confirmamos que **no existe ninguna forma de registrar ni consultar traslados entre bodegas en Siigo** — ni en su interfaz, ni en su API. Por eso este registro vive en Oblicua.
+
+## Por qué importa
+
+Cuando se mueve mercancía físicamente de una bodega a otra sin dejar ningún registro, el conteo RFID de la bodega de origen muestra un **faltante** y el de la bodega de destino muestra un **sobrante** — aunque no exista ningún problema real de inventario. Registrar el traslado aquí permite explicar esas dos diferencias como lo que realmente son, en vez de tratarlas como pérdidas o descuadres.
+
+## Registrar un traslado
+
+Tan pronto se mueva mercancía entre bodegas (idealmente el mismo día, antes de que se concilie el conteo correspondiente), completar:
+
+- **Bodega origen** y **Bodega destino** (no pueden ser la misma).
+- **Código de producto** (si se conoce) y/o una **descripción** libre.
+- **Cantidad** trasladada.
+- **Fecha** del traslado.
+- **Responsable** de la operación.
+- Observaciones, si hace falta.
+
+Al guardar, queda en el **Historial de traslados** de esta misma pantalla, con estado **Disponible** — listo para usarse. Tiene su propio **filtro por rango de fechas**.
+
+## Usarlo para resolver una diferencia
+
+En [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias), junto a "Justificar" y "Ajuste forzado", hay un tercer botón: **"Justificar con traslado"**. Al usarlo:
+
+1. Se muestra la lista de traslados **Disponibles** (los que todavía no se han usado).
+2. Se elige el que corresponde a esa diferencia (mismo producto/cantidad/bodegas).
+3. La diferencia queda marcada como **Trasladada** — ya no cuenta como una diferencia real — y el traslado pasa a estado **Usado**, para que no pueda reutilizarse en otra diferencia.
+
+:::note
+Un mismo traslado normalmente resuelve **dos** diferencias (el faltante en la bodega de origen y el sobrante en la de destino) — aplícalo una vez sobre cada una.
+:::

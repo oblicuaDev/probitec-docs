@@ -1,0 +1,27 @@
+---
+sidebar_position: 6
+title: Guardar el conteo
+---
+
+# Guardar el conteo
+
+Al pulsar "Guardar conteo para verificación", la app muestra el progreso del envío en 4 pasos: **Preparando datos → Enviando → Guardando → Finalizado**.
+
+## Si todo sale bien
+
+Aparece **"Conteo guardado"** con el código asignado (por ejemplo `CNT-2026-014`), y un botón para **"Ver conteo finalizado"**.
+
+En la pantalla final se confirma:
+- **Estado: Guardado ✓**
+- El texto aclara: *"El conteo fue guardado exitosamente y quedó pendiente de verificación."*
+- Se muestran el ID del conteo, etiquetas únicas, tiempo invertido, fecha/hora y usuario.
+
+Desde aquí, **"Volver al inicio"** regresa a la pantalla principal.
+
+## Si algo falla
+
+Se muestra **"Error al guardar el conteo"** con el detalle (por ejemplo, sin conexión al servidor) y un botón **"Reintentar"**. El conteo no se pierde: sigue disponible para reintentar el envío.
+
+:::note Qué significa "Pendiente" en este punto
+Guardar el conteo **no lo verifica**. Solo lo registra. La verificación (comparar contra lo esperado, resolver diferencias) ocurre después, del lado de la plataforma web — ver [Flujo de trabajo](/docs/flujo-de-trabajo).
+:::

@@ -1,0 +1,61 @@
+---
+sidebar_position: 2
+title: Flujo de trabajo completo
+---
+
+# Flujo de trabajo: de la bodega al inventario cerrado
+
+Este es el recorrido completo de un conteo, de principio a fin, combinando la app móvil y la plataforma web. Es el mejor punto de partida para explicarle el proceso a un cliente o para capacitar a un equipo nuevo.
+
+### 1. El operario inicia sesión en el TC22
+Abre la app, entra con su usuario y contraseña. Ver [Inicio de sesión (app)](/docs/app-movil/inicio-de-sesion).
+
+### 2. Selecciona la bodega
+La app trae en vivo la lista de bodegas desde Siigo. Si una bodega está en mantenimiento, no se puede seleccionar. Ver [Selección de bodega](/docs/app-movil/seleccion-de-bodega).
+
+### 3. Cuenta con el lector RFID
+Con el gatillo del RFD40 (o el botón en pantalla), el operario escanea el estante/bodega. La app descarta duplicados y etiquetas que no pertenecen al inventario (prefijo inválido) en tiempo real. Ver [Realizar un conteo](/docs/app-movil/realizar-un-conteo).
+
+### 4. Revisa el resumen y guarda el conteo
+Al finalizar, ve un resumen (total leído, únicos, duplicados, ignoradas) y pulsa **"Guardar conteo para verificación"**. El conteo queda registrado con estado **Pendiente** — todavía no ha sido comparado contra nada. Ver [Detalle y resumen](/docs/app-movil/detalle-y-resumen) y [Guardar el conteo](/docs/app-movil/guardar-el-conteo).
+
+> A partir de aquí, el trabajo continúa en la **plataforma web**. El operario ya cumplió su parte.
+
+### 5. Un administrador revisa el conteo en la web
+En **Conteos RFID** aparece el nuevo conteo con estado "Pendiente". Al abrir su **Detalle**, ve cuántas unidades se esperaban, cuántas se encontraron y la precisión del conteo. Ver [Conteos RFID](/docs/plataforma-web/conteos-rfid) y [Detalle del conteo](/docs/plataforma-web/detalle-del-conteo).
+
+### 6. Conciliación automática
+El sistema compara producto por producto lo esperado contra lo encontrado y genera la lista de diferencias (faltantes y sobrantes). Ver [Conciliación automática](/docs/plataforma-web/conciliacion-automatica).
+
+### 7. Validación documental
+Para cada diferencia, se intenta primero encontrar un **documento de Siigo** que la explique (una factura de venta, una nota crédito, un traslado). Si se vincula uno, la diferencia queda **Justificada**. Ver [Validación documental](/docs/plataforma-web/validacion-documental).
+
+### 7.5. Traslado entre bodegas (cuando la diferencia es solo un movimiento interno)
+Siigo no tiene forma de registrar traslados entre bodegas, así que se registran directamente en Oblicua. Si un faltante en una bodega y un sobrante en otra corresponden al mismo traslado físico, se vincula la diferencia a ese traslado registrado y queda **Trasladada** — no es una pérdida real, solo un movimiento. Ver [Traslados entre bodegas](/docs/plataforma-web/traslados-entre-bodegas).
+
+### 8. Ajuste de inventario (último recurso)
+Si una diferencia no tiene ningún soporte documental ni corresponde a un traslado, se registra un **ajuste forzado**: motivo, responsable y una justificación de mínimo 10 caracteres. La diferencia queda **Ajustada**. Esta acción es irreversible y queda en la auditoría. Ver [Ajustes de inventario](/docs/plataforma-web/ajustes-de-inventario).
+
+### 9. Cierre de inventario
+Cuando ya no quedan diferencias por resolver (o se acepta cerrar con las que persistan), se confirma el **cierre**. El conteo queda bloqueado permanentemente. Ver [Cierre de inventario](/docs/plataforma-web/cierre-de-inventario).
+
+### 10. Consulta histórica
+Todos los conteos cerrados quedan disponibles en **Historial**, y cada acción sensible (ajustes, cierres, inicios de sesión) queda registrada en **Auditoría**, con usuario, fecha, hora y dispositivo. Ver [Historial de inventarios](/docs/plataforma-web/historial-de-inventarios) y [Auditoría](/docs/plataforma-web/auditoria).
+
+## Estados de un conteo, de un vistazo
+
+| Estado | Qué significa |
+|---|---|
+| **Pendiente** | Se guardó desde la app, aún no se ha conciliado en la web. |
+| **Con diferencias** | Ya se concilió y hay faltantes/sobrantes sin resolver. |
+| **Conciliado** | Ya no tiene diferencias pendientes (todas justificadas o ajustadas). |
+| **Cerrado** | Se confirmó el cierre; ya no puede modificarse. |
+
+## Estados de una diferencia individual
+
+| Estado | Qué significa |
+|---|---|
+| **Pendiente** / **No justificada** | Detectada, todavía sin resolver. |
+| **Justificada** | Se vinculó a un documento de Siigo que la explica. |
+| **Trasladada** | Se vinculó a un traslado entre bodegas registrado en Oblicua. |
+| **Ajustada** | Se registró un ajuste forzado (sin soporte documental ni traslado). |

@@ -1,0 +1,9 @@
+{
+  "label": "App móvil",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "title": "App móvil (TC22)",
+    "description": "Manual de uso de la app Oblicua RFID para el terminal Zebra TC22 con lector RFD40."
+  }
+}

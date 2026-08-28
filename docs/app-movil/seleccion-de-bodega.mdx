@@ -1,0 +1,27 @@
+---
+sidebar_position: 3
+title: Selección de bodega
+---
+
+# Selección de bodega
+
+Al pulsar "Nuevo Conteo", la app consulta en vivo las bodegas configuradas en **Siigo** y muestra la lista.
+
+- **Buscador**: filtra por nombre o código de bodega.
+- Cada tarjeta muestra el nombre, el código y su ubicación (si fue registrada manualmente).
+- **Estado de la bodega**:
+  - **Activa**: se puede empezar un conteo en ella (botón "Comenzar" habilitado).
+  - **Mantenimiento**: no se puede contar en esa bodega en este momento (botón deshabilitado).
+
+## Si algo falla al cargar las bodegas
+
+La pantalla distingue varios escenarios y muestra un mensaje claro con un botón **"Reintentar"**:
+
+| Situación | Mensaje |
+|---|---|
+| Sin conexión al servicio | No se pudo conectar con el servicio de bodegas. |
+| Error de autenticación con Siigo | Error de autenticación con Siigo. Contacta al administrador. |
+| Siigo no devolvió ninguna bodega | No hay bodegas disponibles en este momento. |
+| Cualquier otro error | Ocurrió un error al consultar las bodegas. |
+
+Al pulsar **"Comenzar"** en una bodega activa, se pasa a [Realizar un conteo](/docs/app-movil/realizar-un-conteo).

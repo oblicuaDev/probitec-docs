@@ -1,0 +1,30 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Paleta Oblicua (índigo de marca #4824E4). */
+:root {
+  --ifm-color-primary: #4824e4;
+  --ifm-color-primary-dark: #3a1cc0;
+  --ifm-color-primary-darker: #341aae;
+  --ifm-color-primary-darkest: #2b1590;
+  --ifm-color-primary-light: #5b3eea;
+  --ifm-color-primary-lighter: #684eec;
+  --ifm-color-primary-lightest: #8a76f1;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* Para legibilidad, una paleta más clara en modo oscuro. */
+[data-theme='dark'] {
+  --ifm-color-primary: #8a76f1;
+  --ifm-color-primary-dark: #7360ee;
+  --ifm-color-primary-darker: #6753ec;
+  --ifm-color-primary-darkest: #4b30e6;
+  --ifm-color-primary-light: #a18ce4;
+  --ifm-color-primary-lighter: #ad9af5;
+  --ifm-color-primary-lightest: #d0c5f9;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
