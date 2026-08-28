@@ -28,16 +28,15 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
-Using SSH:
+El sitio se publica automáticamente en **GitHub Pages** con cada push a `main`,
+mediante el workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+URL: https://oblicuadev.github.io/probitec-docs/
+
+Requisito único (una sola vez): en el repo, **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Despliegue manual alternativo (empuja el build al branch `gh-pages`):
 
 ```bash
-USE_SSH=true npm run deploy
+GIT_USER=<tu usuario de GitHub> npm run deploy
 ```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

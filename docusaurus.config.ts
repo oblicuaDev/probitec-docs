@@ -13,11 +13,13 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://docs.oblicua.co',
-  baseUrl: '/',
+  url: 'https://oblicuadev.github.io',
+  baseUrl: '/probitec-docs/',
 
-  organizationName: 'oblicua',
-  projectName: 'oblicua-rfid-docs',
+  organizationName: 'oblicuaDev',
+  projectName: 'probitec-docs',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
 
