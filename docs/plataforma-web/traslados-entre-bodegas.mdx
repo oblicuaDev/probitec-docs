@@ -35,3 +35,15 @@ En [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias), junto
 :::note
 Un mismo traslado normalmente resuelve **dos** diferencias (el faltante en la bodega de origen y el sobrante en la de destino) — aplícalo una vez sobre cada una.
 :::
+
+## Vista previa: registrar el traslado en Siigo
+
+Aunque Siigo no tiene un endpoint de "traslados", sí permite crear comprobantes contables genéricos que pueden llevar producto, cantidad y bodega en Débito/Crédito — una forma indirecta de dejarlo anotado en la contabilidad.
+
+Sobre un traslado sin usar todavía (con **código de producto**), el botón **"Registrar en Siigo"** muestra el comprobante exacto que se enviaría, con un botón **"Confirmar registro (simulado)"**.
+
+:::caution Por ahora es una simulación
+No se está llamando a Siigo de verdad — falta confirmar con contabilidad el código de cuenta y el tipo de comprobante exactos. Al confirmar, el traslado queda marcado **Simulado** y se crea un documento interno que el [cruce de documentos](/docs/plataforma-web/validacion-documental) ya puede sugerir como justificación de una diferencia, igual que con una factura real.
+:::
+
+Solo Administrador y Supervisor pueden usar esta acción — ver [Roles y permisos](/docs/roles-y-permisos).

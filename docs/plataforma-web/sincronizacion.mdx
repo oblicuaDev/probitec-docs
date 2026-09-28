@@ -1,0 +1,26 @@
+---
+sidebar_position: 10.5
+title: Administración de sincronización
+---
+
+# Administración de sincronización
+
+Pantalla de estado técnico: muestra si los distintos puntos de integración del sistema están funcionando, sin entrar a ver conteos ni diferencias puntuales. Se llega a ella desde el acceso rápido del [Dashboard](/docs/plataforma-web/dashboard).
+
+## Indicadores
+
+- **Última sincronización**: hace cuánto llegó el conteo más reciente desde la app móvil.
+- **Conteos sincronizados**: total histórico de conteos recibidos.
+- **Conciliación**: confirma que corre en modo automático.
+- **Integraciones pendientes**: cuántas de las tareas de abajo todavía no están configuradas.
+
+## Estado de la sincronización
+
+Lista de las 4 tareas del flujo de datos, cada una con su estado (**Operativa** o **Pendiente**):
+
+- **App Android RFID → Supabase**: los conteos se sincronizan al finalizar en el dispositivo.
+- **Conciliación automática**: cada conteo recibido se concilia contra el inventario esperado.
+- **Exportación a ERP Siigo**.
+- **Webhooks / tareas programadas**.
+
+Solo **Administrador** puede gestionar esta configuración; Supervisor y Auditor pueden verla en modo lectura. Ver [Roles y permisos](/docs/roles-y-permisos).
