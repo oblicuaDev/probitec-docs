@@ -13,8 +13,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://oblicuadev.github.io',
-  baseUrl: '/probitec-docs/',
+  url: 'https://manualrfid.oblicua.co',
+  baseUrl: '/',
 
   organizationName: 'oblicuaDev',
   projectName: 'probitec-docs',
