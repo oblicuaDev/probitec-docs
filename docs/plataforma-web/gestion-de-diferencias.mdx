@@ -9,7 +9,26 @@ import { Captura } from '@site/src/components/Captura';
 
 Vista central del **Conciliador** para trabajar las diferencias de los conteos que envía Bodega.
 
-- **Filtros**: Todos, Faltantes, Sobrantes, Sin justificar, Justificadas, Trasladadas, Ajustadas, Omitidas.
+## Trabajar un conteo hasta dejarlo listo para el cierre
+
+1. Arriba, en **Conteo**, elige el conteo que vas a conciliar. Por defecto aparece el conteo abierto más antiguo, porque los conteos de una bodega se cierran en orden. También puedes ver **Todos los conteos**.
+2. La barra muestra el avance: **«N de M diferencias resueltas · X pendientes»**. El botón **«Ver solo pendientes»** deja en la lista únicamente las que faltan.
+3. Resuelve cada diferencia con una de las acciones de abajo.
+4. Cuando no queda ninguna **Pendiente**, la barra se pone en verde y se activa **«Ir a cierre de este conteo»**, que abre el [cierre](/docs/plataforma-web/cierre-de-inventario) con ese conteo ya seleccionado.
+
+<Captura web src="/img/plataforma-web/17-diferencias-avance-pendiente.png" alt="Conteo con dos diferencias pendientes y el botón de cierre bloqueado" pie="Con pendientes, el botón muestra cuántas faltan" />
+
+<Captura web src="/img/plataforma-web/18-diferencias-listo-para-cierre.png" alt="Conteo con todas sus diferencias resueltas y el botón Ir a cierre activo" pie="Todo resuelto: «Ir a cierre de este conteo»" />
+
+:::note ¿Hay que justificar todo?
+No es necesario que todo quede **Justificado**. Para cerrar basta con que ninguna diferencia esté **Pendiente**: también cuentan como resueltas las **Trasladadas**, **Omitidas**, **Ajustadas** y las marcadas **Sin soporte** (No justificadas). Estas últimas las corrige el Supervisor con un [ajuste de inventario](/docs/plataforma-web/ajustes-de-inventario).
+:::
+
+El Conciliador ve el botón como **«Listo para cierre (supervisor)»**: el cierre lo ejecuta un Supervisor o Administrador.
+
+## Filtros y lista
+
+- **Filtros**: Todos, Pendientes, Faltantes, Sobrantes, Sin justificar, Justificadas, Trasladadas, Ajustadas, Omitidas.
 - **Filtro por rango de fechas**, para acotar el análisis a un periodo.
 - Cada diferencia muestra producto, tipo (faltante o sobrante), cantidad en unidades, documento sugerido (si lo hay) y estado.
 
