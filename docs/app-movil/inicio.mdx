@@ -3,24 +3,42 @@ sidebar_position: 2
 title: Inicio
 ---
 
+import { Captura, Capturas } from '@site/src/components/Captura';
+
 # Inicio
 
-Es la pantalla principal de la app, con el estado general del operario.
+Es la pantalla principal de la app, con el estado general de los conteos.
+
+<Captura src="/img/app-movil/02-inicio.png" alt="Pantalla Inicio de la app" pie="Inicio" />
 
 ## Indicadores
 
-- **Pendientes**: cuántos conteos propios están guardados y todavía no han sido verificados/conciliados en la web.
-- **Verificados**: cuántos conteos ya fueron conciliados en la plataforma web este mes.
-- **Último conteo**: fecha, hora y bodega del conteo más reciente que se hizo desde este usuario.
+- **Pendientes**: conteos enviados que todavía no se han cerrado en la plataforma web (pendientes de conciliar o con diferencias).
+- **Verificados**: conteos ya conciliados o cerrados en la web.
+- **Último conteo**: fecha, hora y bodega del conteo más reciente.
 
 ## Nuevo conteo
 
-El botón principal **"Nuevo Conteo"** lleva a [Selección de bodega](/docs/app-movil/seleccion-de-bodega) para empezar un conteo.
+El botón principal **"Nuevo Conteo"** lleva a [Selección de bodega](/docs/app-movil/seleccion-de-bodega).
 
-Si el usuario tiene rol **Auditor**, este botón aparece deshabilitado con la nota "Tu rol no permite iniciar conteos" — ver [Roles y permisos](/docs/roles-y-permisos).
+El botón aparece deshabilitado cuando:
+- el rol del usuario no permite contar (**Conciliador** y **Auditor** solo consultan), o
+- todavía no se ha cargado ningún inventario inicial en la plataforma web.
+
+## Conteos sin enviar
+
+Si un conteo no se pudo enviar (por ejemplo, sin internet), queda **guardado en el equipo** y aparece este aviso con el botón **"Enviar ahora"**. El conteo no se pierde aunque se cierre la app o se apague el equipo.
+
+<Capturas>
+  <Captura src="/img/app-movil/09-conteos-sin-enviar.png" alt="Aviso de conteos guardados en el equipo sin enviar" pie="Conteo guardado en el equipo, pendiente de envío" />
+  <Captura src="/img/app-movil/10-conteo-enviado.png" alt="Confirmación de conteo enviado al servidor" pie="Después de pulsar «Enviar ahora»" />
+</Capturas>
+
+## Salir
+
+El botón **Salir** (arriba a la derecha) cierra la sesión. Los conteos sin enviar se quedan en el equipo y se pueden enviar con la siguiente sesión.
 
 ## Navegación inferior
 
 - **Inicio**: esta misma pantalla.
-- **Historial**: conteos anteriores propios — ver [Historial y diferencias](/docs/app-movil/historial-y-diferencias).
-- **Diferencias**: diferencias detectadas en el conteo más reciente — ver [Historial y diferencias](/docs/app-movil/historial-y-diferencias).
+- **Historial** y **Diferencias**: ver [Historial y diferencias](/docs/app-movil/historial-y-diferencias).

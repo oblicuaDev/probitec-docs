@@ -3,25 +3,38 @@ sidebar_position: 9
 title: Cierre de inventario
 ---
 
+import { Captura } from '@site/src/components/Captura';
+
 # Cierre de inventario
 
-Último paso del proceso: bloquea definitivamente un conteo.
+Último paso del proceso: deja un conteo como **definitivo**. Lo ejecuta un **Supervisor** o **Administrador**.
 
 ## Qué muestra
 
-- Código y bodega del conteo abierto más reciente.
-- Resumen: coincidencias, diferencias con conteo, ajustes realizados y justificaciones documentales.
-- Responsable, fecha y hora del cierre.
-- Si todavía quedan diferencias sin resolver, lo advierte explícitamente (puede cerrarse igual; quedarán registradas como diferencias sin resolver).
+- Selector del conteo a cerrar, si hay varios abiertos.
+- Unidades esperadas y encontradas.
+- Diferencias por estado: **Pendientes**, Justificadas, Trasladadas, Ajustadas, Omitidas y No justificadas, más las **etiquetas no reconocidas**.
+- Responsable del cierre y fecha del conteo.
 
-## Cerrar
+<Captura web src="/img/plataforma-web/07-cierre-de-inventario.png" alt="Pantalla de cierre de inventario bloqueada por diferencias pendientes" pie="Cierre bloqueado: quedan diferencias pendientes" />
 
-Al pulsar **"Cerrar inventario definitivamente"**, se pide confirmación una segunda vez antes de aplicar el cierre.
+## Reglas
+
+- **No se puede cerrar con diferencias Pendientes.** El Conciliador debe dejar cada una justificada, trasladada, omitida o marcada **sin soporte**. Lo que quede sin soporte se resuelve con un [ajuste de inventario](/docs/plataforma-web/ajustes-de-inventario).
+- **Los conteos de una bodega se cierran en orden**, del más antiguo al más reciente, porque cada cierre es el punto de partida del siguiente.
+
+## Qué pasa al cerrar
+
+Al pulsar **"Cerrar inventario definitivamente"** se pide una segunda confirmación. Después:
+
+- La cantidad final de cada producto queda como el **inventario esperado del siguiente conteo** de esa bodega.
+- El [inventario inicial](/docs/plataforma-web/inventario-inicial) de esa bodega queda **bloqueado**.
+- La acción queda registrada en la auditoría.
 
 :::caution Acción irreversible
-Una vez cerrado, el inventario **no puede modificarse nuevamente** y la acción queda registrada en la auditoría.
+Un conteo cerrado no puede modificarse.
 :::
 
-Tras confirmar, se redirige a [Historial de inventarios](/docs/plataforma-web/historial-de-inventarios).
+## Descartar un conteo
 
-Si no hay ningún inventario abierto por cerrar, la pantalla lo indica y ofrece ir directo al historial.
+Si un conteo abierto fue una prueba o quedó incompleto, **"Descartar este conteo"** lo elimina con un comentario obligatorio que queda en la auditoría. Un conteo cerrado no se puede descartar.

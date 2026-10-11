@@ -3,6 +3,8 @@ sidebar_position: 7.5
 title: Traslados entre bodegas
 ---
 
+import { Captura } from '@site/src/components/Captura';
+
 # Traslados entre bodegas
 
 Investigamos la API de Siigo a fondo (documentación oficial + pruebas directas contra la cuenta real) y confirmamos que **no existe ninguna forma de registrar ni consultar traslados entre bodegas en Siigo** — ni en su interfaz, ni en su API. Por eso este registro vive en Oblicua.
@@ -11,7 +13,21 @@ Investigamos la API de Siigo a fondo (documentación oficial + pruebas directas 
 
 Cuando se mueve mercancía físicamente de una bodega a otra sin dejar ningún registro, el conteo RFID de la bodega de origen muestra un **faltante** y el de la bodega de destino muestra un **sobrante** — aunque no exista ningún problema real de inventario. Registrar el traslado aquí permite explicar esas dos diferencias como lo que realmente son, en vez de tratarlas como pérdidas o descuadres.
 
-## Registrar un traslado
+## Cargar una nota de traslado (recomendado)
+
+En la parte superior de la pantalla, **"Cargar nota de traslado"** acepta dos tipos de archivo:
+
+- **El PDF de Siigo** «Nota de traslado entre bodegas», tal como se descarga. Se leen el número (NT-…), la fecha, las observaciones y cada línea: producto, cantidad, bodega origen y bodega destino.
+- **La plantilla de Excel** (botón **"Descargar plantilla"**): una fila por producto; varias filas con el mismo **número de nota** forman un solo traslado. Trae una hoja con los nombres y códigos de las bodegas.
+
+Antes de guardar se muestra una **vista previa** con cada línea validada contra el catálogo y las bodegas. Las líneas con problemas aparecen en rojo (código inexistente, bodega no reconocida, cantidad inválida). Se pueden ajustar el número, la fecha y el responsable. Al confirmar, la nota completa se registra de una vez.
+
+Una nota con un número **ya registrado** se rechaza, para no duplicarla.
+
+<Captura web src="/img/plataforma-web/09-traslados-carga-pdf-siigo.png" alt="Vista previa de la nota de traslado NT-1326 cargada desde el PDF de Siigo" pie="Nota de traslado NT-1326 leída desde el PDF de Siigo, lista para registrar" />
+
+
+## Registrar un traslado a mano
 
 Tan pronto se mueva mercancía entre bodegas (idealmente el mismo día, antes de que se concilie el conteo correspondiente), completar:
 
@@ -22,11 +38,11 @@ Tan pronto se mueva mercancía entre bodegas (idealmente el mismo día, antes de
 - **Responsable** de la operación.
 - Observaciones, si hace falta.
 
-Al guardar, queda en el **Historial de traslados** de esta misma pantalla, con estado **Disponible** — listo para usarse. Tiene su propio **filtro por rango de fechas**.
+Al guardar, queda en el **Historial de traslados** de esta misma pantalla, con estado **Disponible**, listo para usarse. El historial muestra el **número de nota** de cada línea y tiene **filtro por rango de fechas**.
 
 ## Usarlo para resolver una diferencia
 
-En [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias), junto a "Justificar" y "Ajuste forzado", hay un tercer botón: **"Justificar con traslado"**. Al usarlo:
+En [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias), el **Conciliador** tiene el botón **"Justificar con traslado"**. Al usarlo:
 
 1. Se muestra la lista de traslados **Disponibles** (los que todavía no se han usado).
 2. Se elige el que corresponde a esa diferencia (mismo producto/cantidad/bodegas).
@@ -42,7 +58,8 @@ Aunque Siigo no tiene un endpoint de "traslados", sí permite crear comprobantes
 
 Sobre un traslado sin usar todavía (con **código de producto**), el botón **"Registrar en Siigo"** muestra el comprobante exacto que se enviaría, con un botón **"Confirmar registro (simulado)"**.
 
-:::caution Por ahora es una simulación
+:::caution 
+Por ahora es una simulación
 No se está llamando a Siigo de verdad — falta confirmar con contabilidad el código de cuenta y el tipo de comprobante exactos. Al confirmar, el traslado queda marcado **Simulado** y se crea un documento interno que el [cruce de documentos](/docs/plataforma-web/validacion-documental) ya puede sugerir como justificación de una diferencia, igual que con una factura real.
 :::
 

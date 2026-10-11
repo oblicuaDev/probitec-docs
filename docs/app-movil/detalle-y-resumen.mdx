@@ -3,21 +3,29 @@ sidebar_position: 5
 title: Detalle y resumen
 ---
 
+import { Captura, Capturas } from '@site/src/components/Captura';
+
 # Detalle y resumen del conteo
 
-Antes de guardar, el operario puede revisar exactamente qué se contó.
+Antes de enviar, el operario puede revisar exactamente qué se contó.
+
+<Capturas>
+  <Captura src="/img/app-movil/06-detalle-del-conteo.png" alt="Detalle del conteo agrupado por producto" pie="Detalle del conteo" />
+  <Captura src="/img/app-movil/07-resumen-del-conteo.png" alt="Resumen del conteo antes de enviarlo" pie="Resumen del conteo" />
+</Capturas>
 
 ## Detalle del conteo
 
-Lista todas las etiquetas (EPC) únicas leídas, con un buscador para ubicar una en particular. Sirve para una verificación rápida antes de continuar. El botón **"Ver resumen del conteo"** avanza a la siguiente pantalla.
+- **Por producto**: cada producto leído con su nombre y código de Siigo, el rango de seriales y cuántas etiquetas se leyeron. Si una etiqueta es un empaque, se muestra a cuántas unidades equivale.
+- **Por etiqueta**: la lista de cada etiqueta leída.
+- **Etiqueta no registrada**: la etiqueta no corresponde a ningún producto ni unidad de agrupación. Se envía igual y en la web aparece como «etiqueta no reconocida».
+- El buscador encuentra por nombre, código o etiqueta.
+
+**"Ver resumen del conteo"** avanza a la siguiente pantalla.
 
 ## Resumen del conteo
 
-- **Productos únicos leídos**: el número principal, sobre el total de lecturas.
-- KPIs: **Total leído**, **Productos únicos**, **Duplicados**, **Ignoradas**.
-- Información del conteo: tiempo total, usuario, bodega, fecha y hora.
-- Dos acciones al final:
-  - **"Guardar conteo para verificación"**: envía el conteo al servidor. Continúa en [Guardar el conteo](/docs/app-movil/guardar-el-conteo).
-  - **"Guardar localmente"**: guarda una copia en el dispositivo sin enviarla todavía (respaldo).
-
-El texto "pendiente de conciliación en la plataforma web" recuerda que este número **todavía no ha sido comparado contra nada** — eso ocurre después, en la web.
+- **Etiquetas únicas leídas**: el número principal.
+- **Total leído**, **Etiquetas únicas**, **Productos distintos**, **Duplicados**, **Ignoradas**.
+- Tiempo total, usuario, bodega, fecha y hora.
+- **"Guardar conteo para verificación"**: envía el conteo al servidor. Continúa en [Guardar el conteo](/docs/app-movil/guardar-el-conteo).

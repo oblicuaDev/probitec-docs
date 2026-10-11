@@ -1,0 +1,30 @@
+---
+sidebar_position: 2.5
+title: Inventario inicial
+---
+
+import { Captura } from '@site/src/components/Captura';
+
+# Inventario inicial
+
+Es el «inventario cero» de cada bodega: la cantidad de cada producto **antes del primer conteo**. El primer conteo de la bodega se compara contra él. Está en **Configuración → Inventario inicial**.
+
+<Captura web src="/img/plataforma-web/10-inventario-inicial.png" alt="Pantalla de inventario inicial por bodega" pie="Inventario inicial de la bodega Principal" />
+
+## Cargarlo con la plantilla
+
+1. Elige la **bodega**.
+2. Pulsa **"Descargar plantilla de esta bodega"**. Se descarga un Excel con todo el catálogo de Siigo y estas columnas:
+   - **Cantidad**: vacía, para llenar con las unidades físicas.
+   - **Existencia en Siigo (referencia)**: lo que dice Siigo hoy. Solo sirve de guía y **no se carga**.
+   - **Rotulado RFID**: marca los productos que ya tienen etiqueta.
+3. Llena la columna **Cantidad** (una fila sin cantidad se carga en 0) y guarda el archivo.
+4. Súbelo en **"Cargar inventario inicial"**. Antes de confirmar se muestra cuántas filas se leyeron y para qué bodega(s).
+
+Se pueden cargar varias bodegas en un mismo archivo con la columna **Bodega** (nombre o código). Los productos que no aparezcan en el archivo quedan en 0 en esa bodega.
+
+## Reemplazarlo y bloqueo
+
+Mientras la bodega no tenga ningún **conteo cerrado**, su inventario inicial se puede reemplazar las veces que haga falta.
+
+Después del primer conteo **finalizado y cerrado**, el inventario inicial de **esa bodega** queda **bloqueado**, y los conteos siguientes parten del último conteo cerrado. Las demás bodegas no se afectan.

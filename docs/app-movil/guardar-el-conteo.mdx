@@ -3,25 +3,29 @@ sidebar_position: 6
 title: Guardar el conteo
 ---
 
+import { Captura, Capturas } from '@site/src/components/Captura';
+
 # Guardar el conteo
 
-Al pulsar "Guardar conteo para verificación", la app muestra el progreso del envío en 4 pasos: **Preparando datos → Enviando → Guardando → Finalizado**.
+Al pulsar **"Guardar conteo para verificación"**, la app muestra el envío en 4 pasos: **Preparando datos → Enviando → Guardando → Finalizado**.
 
 ## Si todo sale bien
 
-Aparece **"Conteo guardado"** con el código asignado (por ejemplo `CNT-2026-014`), y un botón para **"Ver conteo finalizado"**.
+Aparece **"Conteo guardado"** con el código asignado por el servidor (por ejemplo `CNT-2026-014`) y el botón **"Ver conteo finalizado"**. Desde ese momento el conteo ya se ve en la plataforma web.
 
-En la pantalla final se confirma:
-- **Estado: Guardado ✓**
-- El texto aclara: *"El conteo fue guardado exitosamente y quedó pendiente de verificación."*
-- Se muestran el ID del conteo, etiquetas únicas, tiempo invertido, fecha/hora y usuario.
+## Si no hay internet o algo falla
 
-Desde aquí, **"Volver al inicio"** regresa a la pantalla principal.
+Aparece **"Error al guardar el conteo"** con el motivo y el botón **"Reintentar"**.
 
-## Si algo falla
+<Capturas>
+  <Captura src="/img/app-movil/08-error-sin-conexion.png" alt="Error al guardar el conteo por falta de conexión" pie="Sin conexión: el conteo queda en el equipo" />
+  <Captura src="/img/app-movil/09-conteos-sin-enviar.png" alt="Inicio con el aviso de conteos sin enviar" pie="Se puede enviar después desde Inicio" />
+</Capturas>
 
-Se muestra **"Error al guardar el conteo"** con el detalle (por ejemplo, sin conexión al servidor) y un botón **"Reintentar"**. El conteo no se pierde: sigue disponible para reintentar el envío.
+**El conteo no se pierde.** Queda guardado en el equipo aunque se cierre la app. Cuando vuelva la conexión, pulsa **"Reintentar"** o, desde **Inicio**, **"Enviar ahora"**.
 
-:::note Qué significa "Pendiente" en este punto
-Guardar el conteo **no lo verifica**. Solo lo registra. La verificación (comparar contra lo esperado, resolver diferencias) ocurre después, del lado de la plataforma web — ver [Flujo de trabajo](/docs/flujo-de-trabajo).
+Reintentar es seguro: si el conteo ya había llegado al servidor, no se duplica.
+
+:::note Qué significa "Pendiente"
+Guardar el conteo **no lo verifica**, solo lo registra. La comparación contra el inventario esperado ocurre automáticamente en el servidor, y la revisión de diferencias la hace el **Conciliador** en la plataforma web — ver [Flujo de trabajo](/docs/flujo-de-trabajo).
 :::

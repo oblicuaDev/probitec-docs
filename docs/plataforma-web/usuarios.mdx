@@ -3,12 +3,33 @@ sidebar_position: 12
 title: Usuarios
 ---
 
+import { Captura } from '@site/src/components/Captura';
+
 # Usuarios
 
-Listado de las personas con acceso a la plataforma: nombre, correo, rol, bodegas asignadas, estado (Activo/Inactivo) y último acceso. Los 4 roles disponibles y lo que puede hacer cada uno están en [Roles y permisos](/docs/roles-y-permisos).
+Listado de las personas con acceso: nombre, correo, rol, estado (Activo/Inactivo) y último acceso, con filtros **Todos / Activos / Inactivos**. Lo que puede hacer cada rol está en [Roles y permisos](/docs/roles-y-permisos).
 
-Incluye filtros rápidos por **Todos / Activos / Inactivos** y un botón **"Nuevo usuario"** con un formulario (nombre, correo, rol).
+Solo el **Administrador** puede gestionar usuarios.
 
-:::caution Pendiente de conectar
-La creación de usuarios, la edición, la asignación de bodegas y la desactivación (los íconos de acción de cada fila) son por ahora una maqueta visual: la tabla sí trae los usuarios reales, pero ninguna de esas acciones queda guardada todavía. No se recomienda presentarlas como funcionales en una demo hasta que se conecte esta parte.
-:::
+<Captura web src="/img/plataforma-web/13-usuarios.png" alt="Lista de usuarios con su rol y estado" pie="Usuarios" />
+
+
+## Crear un usuario
+
+1. Pulsa **"Nuevo usuario"**.
+2. Escribe nombre completo y correo, y elige el rol (debajo se explica qué hace cada uno).
+3. Pulsa **"Crear usuario"**.
+
+<Captura web src="/img/plataforma-web/14-nuevo-usuario.png" alt="Formulario de nuevo usuario" pie="Nuevo usuario" />
+
+Arriba de la tabla aparece la **contraseña temporal** del nuevo usuario. **Cópiala en ese momento**: no se vuelve a mostrar. Con **"Copiar todo"** se copian juntas todas las que se generaron en la sesión, listas para entregarlas por un canal seguro. Cada persona puede cambiar la suya con «¿Olvidaste tu contraseña?».
+
+## Cambiar rol, desactivar, nueva contraseña
+
+En cada fila:
+
+- **Rol**: se cambia directamente desde la lista desplegable.
+- **Llave**: genera una nueva contraseña temporal (la anterior deja de funcionar).
+- **Desactivar / Reactivar**: un usuario inactivo no puede iniciar sesión ni en la web ni en la app. Su historial se conserva.
+
+Nadie puede cambiar su propio rol ni desactivarse a sí mismo. Todas estas acciones quedan en la [Auditoría](/docs/plataforma-web/auditoria).

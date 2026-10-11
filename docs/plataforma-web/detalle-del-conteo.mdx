@@ -3,15 +3,19 @@ sidebar_position: 4
 title: Detalle del conteo
 ---
 
+import { Captura } from '@site/src/components/Captura';
+
 # Detalle del conteo
 
 Se abre desde "Ver" en [Conteos RFID](/docs/plataforma-web/conteos-rfid). Si se entra directamente sin haber seleccionado un conteo antes, muestra un aviso invitando a volver al listado.
 
+<Captura web src="/img/plataforma-web/04-detalle-del-conteo.png" alt="Detalle de un conteo con su resumen y diferencias" pie="Detalle del conteo" />
+
 ## Qué muestra
 
 - Ficha del conteo: usuario, dispositivo (TC22 + RFD40), fecha, bodega, tiempo total, unidades esperadas/encontradas e ID.
-- Resumen: **Coincidencias**, **Faltantes**, **Sobrantes**, **Total de diferencias**.
-- **Precisión del conteo**: porcentaje de coincidencia contra lo esperado.
+- Resumen por producto: **Productos que cuadran**, **Productos con faltante** y **con sobrante** (con las unidades debajo) y **Diferencias sin resolver**.
+- **Precisión del conteo**: qué porcentaje de las unidades coincide, producto por producto (un sobrante también la baja). También avisa si hubo **etiquetas no reconocidas**.
 - Tabla de diferencias de ese conteo en particular (producto, tipo, cantidad, estado).
 
 El botón **"Ir a conciliación →"** lleva a [Conciliación automática](/docs/plataforma-web/conciliacion-automatica) para trabajar esas diferencias.

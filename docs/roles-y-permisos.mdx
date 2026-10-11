@@ -5,54 +5,56 @@ title: Roles y permisos
 
 # Roles y permisos
 
-Cada persona que usa Oblicua RFID (en la app móvil o en la plataforma web) tiene asignado uno de **4 roles**. El rol determina qué pantallas puede ver y qué acciones puede ejecutar, tanto en el móvil como en la web.
+Cada persona que usa Oblicua RFID (en la app móvil o en la plataforma web) tiene uno de **5 roles**. El rol decide qué pantallas ve y qué puede hacer.
 
 | Rol | Para quién |
 |---|---|
-| **Administrador** | Configuración, usuarios, cierre de inventario y todo lo demás. |
-| **Supervisor** | Opera y resuelve: concilia, valida, ajusta, cierra. No gestiona usuarios ni la sincronización. |
-| **Operador** | Ejecuta conteos en el móvil y consulta el estado operativo en la web. No resuelve diferencias ni cierra. |
-| **Auditor** | Solo lectura, en todo (incluida auditoría y usuarios). No modifica nada. |
+| **Administrador** | Todo, incluida la gestión de usuarios. |
+| **Supervisor** | Opera y decide: cierra conteos, hace ajustes de inventario, registra traslados, carga el inventario inicial y las unidades de agrupación. No gestiona usuarios. |
+| **Conciliador** | Justifica los conteos que envía Bodega: vincula documentos y traslados, corrige u omite con comentario y marca lo que no tiene soporte. No cierra conteos ni hace ajustes en Siigo. |
+| **Bodega** | Cuenta con la app móvil y consulta el estado en la web. No resuelve diferencias. |
+| **Auditor** | Solo lectura, en todo. No modifica nada. |
 
-Un usuario nuevo entra siempre como **Operador** (el mínimo privilegio); un administrador lo asciende desde [Usuarios](/docs/plataforma-web/usuarios).
+Los usuarios los crea un administrador en [Usuarios](/docs/plataforma-web/usuarios), donde también se cambia el rol o se desactiva una cuenta.
+
+## Quién hace qué en un conteo
+
+1. **Bodega** cuenta la bodega con la app y envía el conteo.
+2. **Conciliador** revisa cada diferencia en la web y la deja **justificada**, **trasladada**, **omitida** o **sin soporte**.
+3. **Supervisor** hace los **ajustes de inventario** de lo que quedó sin soporte y **cierra** el conteo.
 
 ## En la plataforma web
 
-| Pantalla / acción | Admin | Supervisor | Operador | Auditor |
-|---|:---:|:---:|:---:|:---:|
-| Dashboard, Conteos, Detalle, Conciliación, Historial (ver) | ✅ | ✅ | ✅ | ✅ |
-| Validación documental (ver) | ✅ | ✅ | — | ✅ |
-| Diferencias (ver) | ✅ | ✅ | ✅ | ✅ |
-| Diferencias — justificar / traslado / ajuste | ✅ | ✅ | — | — |
-| Traslados (ver / registrar) | ✅ | ✅ | — | solo ver |
-| Ajustes de inventario (ver / registrar) | ✅ | ✅ | — | solo ver |
-| Cierre de inventario (ver / ejecutar) | ✅ | ✅ | — | solo ver |
-| [Sincronización](/docs/plataforma-web/sincronizacion) (ver / gestionar) | ✅ | solo ver | — | solo ver |
-| Auditoría (ver) | ✅ | ✅ | — | ✅ |
-| Usuarios (ver / gestionar) | ✅ | — | — | solo ver |
+| Pantalla / acción | Admin | Supervisor | Conciliador | Bodega | Auditor |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Inicio, Conteos, Detalle, Historial (ver) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Diferencias (ver) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Diferencias — justificar, traslado, corregir, omitir, sin soporte | ✅ | ✅ | ✅ | — | — |
+| Traslados (ver) | ✅ | ✅ | ✅ | — | ✅ |
+| Traslados (registrar / cargar nota) | ✅ | ✅ | — | — | — |
+| Ajustes de inventario (registrar) | ✅ | ✅ | — | — | — |
+| Cierre de inventario (ejecutar) | ✅ | ✅ | — | — | — |
+| Inventario inicial y Unidades de agrupación (ver) | ✅ | ✅ | ✅ | — | ✅ |
+| Inventario inicial y Unidades de agrupación (cargar / editar) | ✅ | ✅ | — | — | — |
+| Sincronización con Siigo | ✅ | ✅ | ✅ | — | solo ver |
+| Auditoría (ver) | ✅ | ✅ | — | — | ✅ |
+| Usuarios (gestionar) | ✅ | — | — | — | solo ver |
 
-El menú lateral solo muestra las secciones a las que cada rol tiene acceso; si alguien entra a una URL sin permiso, la plataforma lo redirige. En las pantallas de acción (validar, ajustar, cerrar, etc.), los botones se ocultan o quedan deshabilitados para quien no puede ejecutarlos.
+El menú solo muestra lo que cada rol puede usar, y los botones de acción se ocultan para quien no puede ejecutarlos.
 
 ## En la app móvil
 
-| Capacidad | Admin | Supervisor | Operador | Auditor |
-|---|:---:|:---:|:---:|:---:|
-| Dashboard, Historial, Diferencias (ver) | ✅ | ✅ | ✅ | ✅ |
-| Iniciar y sincronizar conteos | ✅ | ✅ | ✅ | — |
-
-Un auditor que entra a la app ve el botón **"Nuevo Conteo"** deshabilitado, con la nota "Tu rol no permite iniciar conteos".
+| Capacidad | Admin | Supervisor | Conciliador | Bodega | Auditor |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Inicio, Historial, Diferencias (ver) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Hacer y enviar conteos | ✅ | ✅ | — | ✅ | — |
 
 ## Segunda línea de defensa
 
-Estos mismos permisos se aplican también dentro de la base de datos: aunque alguien intentara forzar una acción sin pasar por la interfaz, el servidor la rechaza igual. Por eso los permisos no dependen únicamente de lo que muestra la pantalla.
-
-:::note
-El alta de usuarios desde [Usuarios](/docs/plataforma-web/usuarios) crea el registro visible, pero asignar o cambiar el rol de una cuenta todavía es una operación que hace un administrador directamente sobre la base de datos.
-:::
+Los mismos permisos se aplican en el servidor: aunque alguien intentara saltarse la pantalla, la operación se rechaza.
 
 ## Recuperación de contraseña
 
-Cualquier usuario, sin importar su rol, puede recuperar su contraseña si la olvida.
-
-- **Plataforma web**: en [Inicio de sesión](/docs/plataforma-web/inicio-de-sesion), enlace **"Recuperar contraseña"** → se pide el correo → llega un enlace para definir una nueva.
-- **App móvil**: en [Inicio de sesión](/docs/app-movil/inicio-de-sesion), enlace **"¿Olvidaste tu contraseña?"** → se escribe el correo en el campo Usuario → el enlace de recuperación se abre en la plataforma web para definir la nueva contraseña.
+- **Plataforma web**: en [Inicio de sesión](/docs/plataforma-web/inicio-de-sesion), **"Recuperar contraseña"** → correo → enlace para definir una nueva.
+- **App móvil**: en [Inicio de sesión](/docs/app-movil/inicio-de-sesion), **"¿Olvidaste tu contraseña?"** → el enlace se abre en la plataforma web.
+- Un administrador también puede generar una **contraseña temporal** nueva desde [Usuarios](/docs/plataforma-web/usuarios).

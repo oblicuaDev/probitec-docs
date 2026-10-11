@@ -3,18 +3,35 @@ sidebar_position: 7
 title: Gestión de diferencias
 ---
 
+import { Captura } from '@site/src/components/Captura';
+
 # Gestión de diferencias
 
-Vista central para trabajar todas las diferencias abiertas, de cualquier conteo.
+Vista central del **Conciliador** para trabajar las diferencias de los conteos que envía Bodega.
 
-- **Filtros**: Todos, Faltantes, Sobrantes, Pendientes, Justificadas, Ajustadas.
+- **Filtros**: Todos, Faltantes, Sobrantes, Sin justificar, Justificadas, Trasladadas, Ajustadas, Omitidas.
 - **Filtro por rango de fechas**, para acotar el análisis a un periodo.
-- Cada diferencia muestra producto, tipo, cantidad, documento de soporte (si ya tiene uno) y estado.
+- Cada diferencia muestra producto, tipo (faltante o sobrante), cantidad en unidades, documento sugerido (si lo hay) y estado.
 
-## Tres caminos para resolver una diferencia
+<Captura web src="/img/plataforma-web/05-gestion-de-diferencias.png" alt="Lista de diferencias con sus acciones" pie="Gestión de diferencias" />
 
-1. **"Justificar"** → abre el mismo flujo de vincular un documento que en [Validación documental](/docs/plataforma-web/validacion-documental).
-2. **"Justificar con traslado"** → vincula la diferencia a un traslado entre bodegas ya registrado en [Traslados entre bodegas](/docs/plataforma-web/traslados-entre-bodegas) (Siigo no soporta esto, por eso se registra aparte). Queda marcada como **Trasladada**.
-3. **"Ajuste forzado"** → lleva a [Ajustes de inventario](/docs/plataforma-web/ajustes-de-inventario) para registrar un ajuste manual, como último recurso, cuando no hay documento ni traslado que la explique.
+## Cómo se calcula una diferencia
 
-Una diferencia ya resuelta (Justificada o Ajustada) se muestra como **"Resuelta"** y no tiene más acciones disponibles.
+Al llegar un conteo, el servidor lo compara automáticamente:
+
+- **Esperado**: el último conteo cerrado de esa bodega o, si aún no hay, su [inventario inicial](/docs/plataforma-web/inventario-inicial).
+- **Encontrado**: las etiquetas leídas convertidas a unidades (empaques y [unidades de agrupación](/docs/plataforma-web/unidades-de-agrupacion)).
+- Se comparan los productos leídos y todos los productos **rotulados con RFID** que deberían estar en la bodega.
+
+## Cómo resolver una diferencia
+
+- **"Cruce automático"** → vincula de una vez las diferencias que cuadran con facturas y notas crédito sincronizadas de Siigo.
+- **"Vincular sugerido"** / **"Justificar"** → la deja **Justificada** con un documento soporte.
+- **"Justificar con traslado"** → la deja **Trasladada** con un traslado registrado en [Traslados entre bodegas](/docs/plataforma-web/traslados-entre-bodegas).
+- **"Corregir cantidad"** → corrige lo contado (por ejemplo, apareció una caja escondida), con comentario obligatorio.
+- **"Omitir"** → retira el producto del conteo (al cerrar se conserva lo esperado), con comentario obligatorio.
+- **"Sin soporte"** → no hay documento ni traslado que la explique: queda **No justificada**, con comentario obligatorio. El Supervisor la resuelve con un [ajuste de inventario](/docs/plataforma-web/ajustes-de-inventario).
+
+<Captura web src="/img/plataforma-web/06-diferencia-sin-soporte.png" alt="Ventana para marcar una diferencia sin soporte" pie="«Sin soporte» pide un comentario obligatorio" />
+
+Todas las acciones quedan en la auditoría con su comentario. Mientras quede alguna diferencia **Pendiente**, el conteo no se puede [cerrar](/docs/plataforma-web/cierre-de-inventario).

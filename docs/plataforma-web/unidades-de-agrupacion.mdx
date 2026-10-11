@@ -1,0 +1,35 @@
+---
+sidebar_position: 2.6
+title: Unidades de agrupación
+---
+
+import { Captura } from '@site/src/components/Captura';
+
+# Unidades de agrupación
+
+Algunas cosas se rotulan con RFID con un **código propio que no existe en Siigo**, por ejemplo una caja que trae varias unidades de un producto. La unidad de agrupación le dice al sistema a qué equivale ese código.
+
+> Ejemplo: la caja **1111** no existe en Siigo, pero contiene **6 unidades del producto 2222**, que sí existe. Al contar, cada etiqueta de la caja 1111 suma **6 unidades de 2222**.
+
+Está en **Configuración → Unidades de agrupación**. Las crea o edita un **Supervisor** o **Administrador**.
+
+<Captura web src="/img/plataforma-web/11-unidades-de-agrupacion.png" alt="Lista de unidades de agrupación" pie="Unidades de agrupación" />
+
+## Crear una
+
+1. Pulsa **"Nueva"**.
+2. Escribe el **código** (no puede ser un código que ya exista en Siigo) y una **descripción**.
+3. Agrega el contenido: el **código de Siigo** de cada producto y cuántas **unidades** trae. Una agrupación puede tener **uno o varios productos** (por ejemplo, un kit).
+4. Pulsa **"Guardar agrupación"**.
+
+<Captura web src="/img/plataforma-web/12-nueva-agrupacion.png" alt="Formulario de nueva unidad de agrupación" pie="Ejemplo: caja 1111 = 6 × masilla aluminio 15045" />
+
+Al guardarla se le asigna un **prefijo EPC** (por ejemplo `22802A…`). Sus etiquetas se imprimen con ese prefijo + «A» + serial, igual que las de los productos.
+
+## Desactivar
+
+Desmarca **"Activa"** para que sus etiquetas dejen de contarse en la conciliación. El historial se conserva.
+
+:::note Etiquetas de producto
+Las etiquetas de un producto normal también pueden representar un **empaque** (por ejemplo, una caja de 200). Eso se toma del dato «unidades por empaque» del producto. Si un producto cuenta mal, revisa ese dato o crea una unidad de agrupación.
+:::
