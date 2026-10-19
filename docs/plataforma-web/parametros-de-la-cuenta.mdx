@@ -1,0 +1,50 @@
+---
+sidebar_position: 2.7
+title: Parámetros de la cuenta
+---
+
+import { Captura } from '@site/src/components/Captura';
+
+# Parámetros de la cuenta
+
+Ajustes que aplican a toda la cuenta: qué código llevan las etiquetas y qué marca se imprime en ellas. Está en **Configuración → Parámetros de la cuenta** (el engranaje arriba a la derecha).
+
+<Captura web src="/img/plataforma-web/15-configuracion-v2.png" alt="Menú de configuración con Parámetros de la cuenta" pie="Configuración" />
+ Todos los roles con acceso a Configuración lo pueden ver; **solo el Administrador** lo puede cambiar, y cada cambio queda en la [Auditoría](/docs/plataforma-web/auditoria).
+
+<Captura web src="/img/plataforma-web/21-parametros-de-la-cuenta.png" alt="Pantalla de parámetros de la cuenta" pie="Parámetros de la cuenta" />
+
+## Código en las etiquetas
+
+Define qué código va en la etiqueta y al inicio del EPC (código + «A» + serial):
+
+| Opción | Ejemplo de EPC | Para qué |
+|---|---|---|
+| **Enmascarado** (por defecto) | `2219A0001` | La etiqueta lleva un número interno. **No revela el código de Siigo.** |
+| **Original del ERP (Siigo)** | `13000740A0001` | La etiqueta lleva el código de Siigo del producto (o `AG-…` en las cajas). |
+
+El mismo parámetro decide qué código muestra la app en el detalle del conteo y cómo interpreta el servidor las etiquetas al conciliar.
+
+:::warning
+Antes de cambiarlo
+Las etiquetas ya impresas siguen funcionando solo si están **registradas** en el sistema. Si cambias el código con etiquetas sin registrar pegadas en la bodega, esas etiquetas dejarán de reconocerse. Consulta con Oblicua antes de cambiarlo.
+:::
+
+## Marca en la etiqueta
+
+Solo las marcas de esta lista se imprimen en la etiqueta. **Todos los demás productos llevan la marca por defecto** (Probitec).
+
+- **Marca impresa**: el nombre como sale en la etiqueta (por ejemplo `Iwata`).
+- **Se reconoce por**: palabras para encontrar la marca, separadas por comas. Se buscan en la **marca del producto en Siigo** y, si no hay marca, en la **descripción** (por ejemplo `SCANGRIP` encuentra «Linterna Scangrip MATCHPEN R»).
+- **Agregar marca** / papelera: agrega o quita marcas.
+- **Marca por defecto**: la que llevan los demás productos.
+- **Vista previa**: muestra cómo quedaría la etiqueta de algunos productos de ejemplo.
+
+Pulsa **"Guardar marcas"** para aplicar los cambios.
+
+Marcas configuradas al iniciar: Kovax, Chamaleon, Menzerna, Malco, Sagola, Shine Mate, Scangrip, Smirdex, Iwata, Colad, IGL y Vibac.
+
+:::note
+Dónde se usa
+El Excel de etiquetas para imprimir trae las columnas **«Código en etiqueta»** y **«Marca en etiqueta»** calculadas con estos parámetros.
+:::

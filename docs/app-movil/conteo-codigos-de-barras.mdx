@@ -1,0 +1,49 @@
+---
+sidebar_position: 4.1
+title: Conteo por códigos de barras
+---
+
+import { Captura, Capturas } from '@site/src/components/Captura';
+
+# Conteo por códigos de barras
+
+Se elige el modo **Códigos de barras** en la [selección de bodega](/docs/app-movil/seleccion-de-bodega). Sirve cuando no hay lector RFID o la mercancía solo trae código de barras.
+
+<Capturas>
+  <Captura src="/img/app-movil/11-codigos-de-barras.png" alt="Conteo por códigos de barras con tres líneas" pie="Cada escaneo suma a su línea" />
+  <Captura src="/img/app-movil/12-codigo-no-reconocido.png" alt="Aviso de código no reconocido" pie="Código no reconocido: no suma" />
+</Capturas>
+
+## Qué se puede escanear
+
+La app reconoce, en este orden:
+
+1. El **EPC** impreso en la etiqueta (por ejemplo `2219A0001`).
+2. El **código de Siigo** del producto (por ejemplo `13000740`).
+3. El **código de la caja** (unidad de agrupación, por ejemplo `AG-11014`).
+4. Un **EAN** del fabricante, si está registrado en el sistema.
+
+Cada escaneo de un producto suma **1 unidad**. Cada escaneo de una caja suma **las unidades de la caja** (por ejemplo, `AG-11014` suma 6).
+
+## Cómo se cuenta
+
+- Escanea con el **lector del equipo**. Si no hay lector, digita el código en el campo y pulsa Enter.
+- Después de cada escaneo aparece un aviso verde con lo que sumó (por ejemplo **"Caja AG-11014 · +6 uds"**).
+- Si el código no existe, aparece **"Código no reconocido"** en amarillo y **no suma nada**.
+- Cada producto o caja queda en una **línea**. Con **−** y **+** se corrige la cantidad de escaneos; con la papelera se quita la línea.
+- En este modo se ignoran las lecturas RFID.
+
+Arriba se ven las **unidades contadas**, los productos, los escaneos y cuántos códigos no se reconocieron.
+
+## Finalizar
+
+**"Finalizar conteo"** se habilita con al menos una línea. El detalle muestra cada producto con sus unidades y cuántas cajas o escaneos sumó.
+
+<Captura src="/img/app-movil/13-detalle-codigos-de-barras.png" alt="Detalle de un conteo por códigos de barras" pie="Detalle: 3 cajas = 18 uds" />
+
+Desde ahí el proceso es igual al RFID: [Detalle y resumen](/docs/app-movil/detalle-y-resumen) y [Guardar el conteo](/docs/app-movil/guardar-el-conteo).
+
+:::note
+Salir sin finalizar
+Si pulsas la flecha de volver (o el botón atrás del equipo) con productos en el conteo, la app pregunta **«¿Descartar este conteo?»**. **Seguir contando** te deja en la pantalla; **Descartar** sale y las líneas se pierden. Para guardarlo, usa **"Finalizar conteo"**.
+:::

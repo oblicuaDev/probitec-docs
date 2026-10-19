@@ -1,15 +1,27 @@
 ---
 sidebar_position: 3
-title: Selección de bodega
+title: Selección de bodega y modo de conteo
 ---
 
 import { Captura } from '@site/src/components/Captura';
 
-# Selección de bodega
+# Selección de bodega y modo de conteo
 
-Al pulsar "Nuevo Conteo", la app trae las bodegas configuradas en **Siigo**.
+Al pulsar "Nuevo Conteo", la app trae las bodegas configuradas en **Siigo**. Arriba se elige **cómo** se va a contar.
 
-<Captura src="/img/app-movil/03-seleccion-de-bodega.png" alt="Lista de bodegas para iniciar un conteo" pie="Selección de bodega" />
+<Captura src="/img/app-movil/03-seleccion-de-bodega-v102.png" alt="Selección del modo de conteo y de la bodega" pie="Modo de conteo y bodega" />
+
+## Modo de conteo
+
+| Modo | Cuándo usarlo | Cómo se cuenta |
+|---|---|---|
+| **RFID** | Lo normal: productos y cajas rotulados con etiqueta RFID. | Se leen las etiquetas con el RFD40. Ver [Conteo RFID](/docs/app-movil/realizar-un-conteo). |
+| **Códigos de barras** | No hay lector RFID o la mercancía solo trae código de barras. | Se escanea cada código con el lector del equipo. Ver [Conteo por códigos de barras](/docs/app-movil/conteo-codigos-de-barras). |
+| **Manual** | Pocos productos, o productos sin ninguna etiqueta. | Se busca el producto y se digita la cantidad. Ver [Conteo manual](/docs/app-movil/conteo-manual). |
+
+En los tres modos el resultado es el mismo: **unidades por producto**. Una caja (unidad de agrupación) suma las unidades que contiene.
+
+## Bodega
 
 - **Buscador**: filtra por nombre de bodega.
 - **Activa**: se puede contar en ella (botón **"Comenzar"**).
@@ -25,9 +37,7 @@ Si Siigo no responde, la app usa la lista de bodegas que ya tiene guardada el se
 | Sin conexión | Revisa el internet del equipo y pulsa **"Reintentar"**. |
 | No aparece ninguna bodega | Contacta al administrador. |
 
-Al pulsar **"Comenzar"** se pasa a [Realizar un conteo](/docs/app-movil/realizar-un-conteo).
-
-:::important 
+:::important
 Cuenta la bodega completa
-Al conciliar, el sistema compara lo leído contra **todos** los productos rotulados que deberían estar en esa bodega. Un producto rotulado que no se lea aparece como **faltante**. Recorre toda la bodega antes de finalizar.
+Al conciliar, el sistema compara lo contado contra **todos** los productos rotulados que deberían estar en esa bodega, sin importar el modo. Un producto rotulado que no se cuente aparece como **faltante**. Recorre toda la bodega antes de finalizar.
 :::

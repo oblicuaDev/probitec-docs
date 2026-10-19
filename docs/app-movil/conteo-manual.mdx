@@ -1,0 +1,44 @@
+---
+sidebar_position: 4.2
+title: Conteo manual
+---
+
+import { Captura, Capturas } from '@site/src/components/Captura';
+
+# Conteo manual
+
+Se elige el modo **Manual** en la [selección de bodega](/docs/app-movil/seleccion-de-bodega). Sirve para pocos productos o para productos sin etiqueta: se busca el producto y se digita la cantidad.
+
+<Capturas>
+  <Captura src="/img/app-movil/14-manual-busqueda.png" alt="Búsqueda de producto con autocompletado" pie="1. Buscar el producto o la caja" />
+  <Captura src="/img/app-movil/15-manual-cantidad.png" alt="Cantidad de cajas a agregar" pie="2. Digitar la cantidad" />
+</Capturas>
+
+## Cómo se cuenta
+
+1. Escribe en el buscador parte del **código** o de la **descripción** (por ejemplo `power protect 1lt` o `48122`). Aparecen los productos y las **cajas** que coinciden.
+2. Elige el producto o la caja.
+   - Si es un **producto**, digita la cantidad de **unidades**.
+   - Si es una **caja** (`AG-…`), digita la cantidad de **cajas**. La app muestra a cuántas unidades equivale (por ejemplo, 4 cajas = 24 unidades).
+3. Pulsa **"Agregar al conteo"** (o Enter en el teclado).
+4. Repite con el siguiente producto.
+
+<Captura src="/img/app-movil/16-manual-lineas.png" alt="Lista de productos agregados al conteo manual" pie="3. Las líneas del conteo" />
+
+Cada producto o caja queda en una **línea**. Con **−** y **+** se ajusta la cantidad; con la papelera se quita. Si agregas otra vez el mismo producto, se suma a su línea.
+
+## Finalizar
+
+**"Finalizar conteo"** se habilita con al menos una línea. El detalle muestra cada producto con sus unidades; las líneas digitadas aparecen como **"digitado"** y las cajas como **"N cajas"**.
+
+<Capturas>
+  <Captura src="/img/app-movil/17-detalle-manual.png" alt="Detalle de un conteo manual" pie="Detalle del conteo manual" />
+  <Captura src="/img/app-movil/18-manual-finalizado.png" alt="Conteo manual guardado" pie="Conteo manual guardado" />
+</Capturas>
+
+Desde ahí el proceso es igual al RFID: [Detalle y resumen](/docs/app-movil/detalle-y-resumen) y [Guardar el conteo](/docs/app-movil/guardar-el-conteo).
+
+:::note
+Salir sin finalizar
+Si pulsas la flecha de volver (o el botón atrás del equipo) con productos en el conteo, la app pregunta **«¿Descartar este conteo?»**. **Seguir contando** te deja en la pantalla; **Descartar** sale y las líneas se pierden. Para guardarlo, usa **"Finalizar conteo"**.
+:::

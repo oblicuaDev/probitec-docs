@@ -7,13 +7,24 @@ import { Captura } from '@site/src/components/Captura';
 
 # Unidades de agrupación
 
-Algunas cosas se rotulan con RFID con un **código propio que no existe en Siigo**, por ejemplo una caja que trae varias unidades de un producto. La unidad de agrupación le dice al sistema a qué equivale ese código.
+Una unidad de agrupación es un **código propio que no existe en Siigo** y que representa varias unidades de productos que sí existen. Se usa para rotular las **cajas**: la caja lleva la etiqueta de la agrupación y cada unidad suelta lleva la etiqueta del producto.
 
-> Ejemplo: la caja **1111** no existe en Siigo, pero contiene **6 unidades del producto 2222**, que sí existe. Al contar, cada etiqueta de la caja 1111 suma **6 unidades de 2222**.
+> Ejemplo: la caja **AG-22753261001** no existe en Siigo, pero contiene **6 unidades** del producto **22753261001** (POWER PROTECT ULTRA 1LT). Al contar, cada etiqueta de esa caja suma **6 unidades**; cada etiqueta del producto suelto suma **1**.
 
 Está en **Configuración → Unidades de agrupación**. Las crea o edita un **Supervisor** o **Administrador**.
 
-<Captura web src="/img/plataforma-web/11-unidades-de-agrupacion.png" alt="Lista de unidades de agrupación" pie="Unidades de agrupación" />
+<Captura web src="/img/plataforma-web/11-unidades-de-agrupacion-v2.png" alt="Lista de unidades de agrupación filtrada" pie="Unidades de agrupación (búsqueda «power protect»)" />
+
+## Las agrupaciones de Probitec
+
+Cada producto de las listas de etiquetas que trae **más de una unidad por empaque** tiene su agrupación, con el código **`AG-` + código de Siigo** y la descripción **«Empaque xN · producto»**. Son 514.
+
+Sus etiquetas se imprimen con el **prefijo EPC** de la agrupación (columna «Prefijo EPC», por ejemplo `25825A…`) + «A» + serial.
+
+:::important
+Etiqueta de producto = 1 unidad
+Desde octubre de 2026 la etiqueta de un **producto** cuenta siempre **1 unidad**. Para contar una caja completa se usa la etiqueta de su **agrupación**. Si una caja tiene pegada una etiqueta de producto, cuenta solo 1: hay que reemplazarla por la de la agrupación.
+:::
 
 ## Crear una
 
@@ -24,13 +35,8 @@ Está en **Configuración → Unidades de agrupación**. Las crea o edita un **S
 
 <Captura web src="/img/plataforma-web/12-nueva-agrupacion.png" alt="Formulario de nueva unidad de agrupación" pie="Ejemplo: caja 1111 = 6 × masilla aluminio 15045" />
 
-Al guardarla se le asigna un **prefijo EPC** (por ejemplo `22802A…`). Sus etiquetas se imprimen con ese prefijo + «A» + serial, igual que las de los productos.
+Al guardarla se le asigna un **prefijo EPC**. Sus etiquetas se imprimen con ese prefijo + «A» + serial, igual que las de los productos.
 
 ## Desactivar
 
 Desmarca **"Activa"** para que sus etiquetas dejen de contarse en la conciliación. El historial se conserva.
-
-:::note 
-Etiquetas de producto
-Las etiquetas de un producto normal también pueden representar un **empaque** (por ejemplo, una caja de 200). Eso se toma del dato «unidades por empaque» del producto. Si un producto cuenta mal, revisa ese dato o crea una unidad de agrupación.
-:::

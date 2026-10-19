@@ -7,25 +7,36 @@ import { Captura, Capturas } from '@site/src/components/Captura';
 
 # Detalle y resumen del conteo
 
-Antes de enviar, el operario puede revisar exactamente qué se contó.
+Antes de enviar, el operario puede revisar exactamente qué se contó. Funciona igual en los tres modos (RFID, códigos de barras y manual).
 
 <Capturas>
-  <Captura src="/img/app-movil/06-detalle-del-conteo-v101.png" alt="Detalle del conteo agrupado por producto" pie="Detalle del conteo" />
-  <Captura src="/img/app-movil/07-resumen-del-conteo.png" alt="Resumen del conteo antes de enviarlo" pie="Resumen del conteo" />
+  <Captura src="/img/app-movil/06-detalle-del-conteo-v102.png" alt="Detalle del conteo agrupado por producto" pie="Detalle por producto" />
+  <Captura src="/img/app-movil/06b-detalle-por-etiqueta-v102.png" alt="Detalle del conteo por etiqueta" pie="Detalle por etiqueta (RFID)" />
 </Capturas>
 
 ## Detalle del conteo
 
-- **Por producto**: cada producto leído con su nombre y código de Siigo, el rango de seriales y cuántas etiquetas se leyeron. Si una etiqueta es un empaque, se muestra a cuántas unidades equivale.
-- **Por etiqueta**: la lista de cada etiqueta leída.
-- **Etiqueta no registrada**: la etiqueta no corresponde a ningún producto ni unidad de agrupación. Se envía igual y en la web aparece como «etiqueta no reconocida».
+Arriba: las **unidades contadas**, el modo, cuántos productos y cuántas etiquetas (RFID) o líneas (códigos de barras y manual).
+
+- **Por producto**: cada producto con su nombre, su código y sus **unidades**. Debajo dice cómo se contó: por ejemplo **"3 cajas + 2 sueltas"** (3 etiquetas de caja x6 y 2 unidades sueltas = 20 unidades).
+- **Por etiqueta** (solo RFID): cada etiqueta leída y lo que suma. Las cajas aparecen en amarillo con sus unidades; las **etiquetas no registradas** aparecen con **0 uds**.
 - El buscador encuentra por nombre, código o etiqueta.
+
+:::note
+Qué código se ve
+El código que muestra la app depende del parámetro de la cuenta **Código en las etiquetas**: el código enmascarado (interno, por ejemplo `2396`) o el original de Siigo. Ver [Parámetros de la cuenta](/docs/plataforma-web/parametros-de-la-cuenta).
+:::
 
 **"Ver resumen del conteo"** avanza a la siguiente pantalla.
 
 ## Resumen del conteo
 
-- **Etiquetas únicas leídas**: el número principal.
-- **Total leído**, **Etiquetas únicas**, **Productos distintos**, **Duplicados**, **Ignoradas**.
-- Tiempo total, usuario, bodega, fecha y hora.
+<Captura src="/img/app-movil/07-resumen-del-conteo-v102.png" alt="Resumen del conteo antes de enviarlo" pie="Resumen del conteo" />
+
+- **Unidades contadas**: el número principal.
+- Indicadores según el modo:
+  - **RFID**: productos distintos, etiquetas únicas, total leído, duplicados e ignoradas.
+  - **Códigos de barras**: productos distintos, escaneos y códigos no reconocidos.
+  - **Manual**: productos distintos y líneas.
+- Modo de conteo, tiempo total, usuario, bodega, fecha y hora.
 - **"Guardar conteo para verificación"**: envía el conteo al servidor. Continúa en [Guardar el conteo](/docs/app-movil/guardar-el-conteo).

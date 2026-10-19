@@ -1,17 +1,17 @@
 ---
 sidebar_position: 4
-title: Realizar un conteo
+title: Conteo RFID
 ---
 
 import { Captura, Capturas } from '@site/src/components/Captura';
 
-# Realizar un conteo
+# Conteo RFID
 
 Es la pantalla de escaneo, pensada para usarse con una mano mientras se sostiene el TC22 con el lector RFD40.
 
 <Capturas>
-  <Captura src="/img/app-movil/04-escaneo-listo.png" alt="Pantalla de escaneo antes de empezar" pie="Lista para escanear" />
-  <Captura src="/img/app-movil/05-escaneo-activo.png" alt="Pantalla de escaneo leyendo etiquetas" pie="Leyendo etiquetas" />
+  <Captura src="/img/app-movil/04-escaneo-listo-v102.png" alt="Pantalla de escaneo antes de empezar" pie="Lista para escanear" />
+  <Captura src="/img/app-movil/05-escaneo-activo-v102.png" alt="Pantalla de escaneo leyendo etiquetas" pie="Leyendo etiquetas: 179 unidades" />
 </Capturas>
 
 ## El botón central
@@ -22,19 +22,29 @@ Es la pantalla de escaneo, pensada para usarse con una mano mientras se sostiene
 
 Junto al nombre de la bodega se ve si el lector está **RFID Activo**, **Pausado** o **Inactivo**. Arriba a la derecha: tiempo transcurrido, usuario y hora de inicio.
 
+## Unidades contadas
+
+El número grande es lo que se compara contra el inventario: **unidades**, no etiquetas.
+
+- Una etiqueta de **producto** suma **1 unidad**.
+- Una etiqueta de **caja** (unidad de agrupación, código `AG-…`) suma **las unidades que trae la caja**. Por ejemplo, 3 cajas de POWER PROTECT x6 suman 18.
+
 ## Contadores en vivo
 
-- **Etiquetas leídas**: total de lecturas, incluyendo repetidas (el lector lee la misma etiqueta varias veces; es normal).
-- **Etiquetas únicas**: etiquetas distintas detectadas. **Esto es lo que cuenta.**
+- **Etiquetas únicas**: etiquetas distintas detectadas. El lector lee la misma etiqueta muchas veces; cada una cuenta una sola vez.
 - **Productos distintos**: cuántos productos diferentes hay entre esas etiquetas.
+- **Cajas (agrupaciones)**: cuántas de las etiquetas son de cajas.
 - **Duplicados**: lecturas repetidas, descartadas automáticamente.
-- **Frecuencia de lectura**: etiquetas por segundo en este momento.
+- **No registradas**: etiquetas que no corresponden a ningún producto ni caja. **No suman** unidades.
+- **Lecturas por segundo**: velocidad de lectura en este momento.
 
-:::note 
-Etiquetas y unidades
-Cada etiqueta representa un **empaque** del producto (por ejemplo, una caja de 200 unidades) o una **unidad de agrupación**. Al conciliar, el sistema convierte las etiquetas a unidades para compararlas con Siigo.
+:::tip
+Etiquetas no registradas
+Si aparecen etiquetas no registradas, revisa en el detalle cuáles son antes de enviar. Puede ser una etiqueta ajena que el lector captó cerca o una etiqueta mal impresa.
 :::
 
 ## Finalizar
 
 **"Finalizar conteo"** se habilita en cuanto hay al menos una etiqueta leída. Al pulsarlo, el conteo **queda guardado en el equipo** y pasa a [Detalle y resumen](/docs/app-movil/detalle-y-resumen).
+
+Si pulsas la flecha de volver (o el botón atrás del equipo) con etiquetas leídas y sin finalizar, la app pregunta **«¿Descartar este conteo?»**: **Seguir contando** te deja en la pantalla; **Descartar** sale y lo leído se pierde.
