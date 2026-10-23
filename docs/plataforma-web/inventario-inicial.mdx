@@ -23,6 +23,25 @@ Es el «inventario cero» de cada bodega: la cantidad de cada producto **antes d
 
 Se pueden cargar varias bodegas en un mismo archivo con la columna **Bodega** (nombre o código). Los productos que no aparezcan en el archivo quedan en 0 en esa bodega.
 
+Cuando el archivo trae varias bodegas, antes de confirmar se muestra una tabla con **filas, unidades y negativos por bodega**, y se avisa si alguna está bloqueada.
+
+## Desde el reporte de saldos de Siigo
+
+El reporte de Siigo **«Saldo de productos y valoración de inventarios»** trae una columna por bodega. Para cargarlo hay que pasarlo al formato de la plantilla: una fila por producto y bodega con saldo, con las columnas **Código de producto**, **Bodega** y **Cantidad**. Las demás columnas (descripción, unidad, categoría) son informativas y se ignoran.
+
+- La columna **«Sin Asignar»** de Siigo se carga en la bodega **Sin asignar**.
+- Las bodegas que en el reporte están todas en cero no hace falta incluirlas: se comparan contra cero.
+
+### Cantidades negativas
+
+Si Siigo reporta un saldo **negativo**, se carga **tal cual** (no se convierte en 0). Así el inventario inicial refleja exactamente lo que dice Siigo, y la diferencia aparece en el primer conteo de esa bodega. En la tabla se ven en rojo y se pueden listar con el filtro **Negativos**.
+
+## Ver el inventario por bodega
+
+- Debajo del selector, **«Bodegas con inventario inicial»** muestra un botón por cada bodega con saldo, con sus productos, unidades y negativos. Un clic abre el detalle de esa bodega.
+- La tabla del inventario vigente tiene filtros **Todos**, **Con stock**, **En cero** y **Negativos**, buscador, orden por columna y paginación.
+- El resumen de todas las bodegas también está en el [Dashboard](/docs/plataforma-web/dashboard), en **Inventario por bodega**.
+
 ## Reemplazarlo y bloqueo
 
 Mientras la bodega no tenga ningún **conteo cerrado**, su inventario inicial se puede reemplazar las veces que haga falta.

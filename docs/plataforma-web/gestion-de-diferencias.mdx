@@ -12,6 +12,7 @@ Vista central del **Conciliador** para trabajar las diferencias de los conteos q
 ## Trabajar un conteo hasta dejarlo listo para el cierre
 
 1. Arriba, en **Conteo**, elige el conteo que vas a conciliar. Por defecto aparece el conteo abierto más antiguo, porque los conteos de una bodega se cierran en orden. También puedes ver **Todos los conteos**.
+   - Con el selector de **bodega** (a la izquierda) la lista de conteos se limita a esa bodega, y **«Todos los conteos de esta bodega»** muestra solo sus diferencias. Al ver todos los conteos, cada diferencia indica de qué bodega es.
 2. La barra muestra el avance: **«N de M diferencias resueltas · X pendientes»**. El botón **«Ver solo pendientes»** deja en la lista únicamente las que faltan.
 3. Resuelve cada diferencia con una de las acciones de abajo.
 4. Cuando no queda ninguna **Pendiente**, la barra se pone en verde y se activa **«Ir a cierre de este conteo»**, que abre el [cierre](/docs/plataforma-web/cierre-de-inventario) con ese conteo ya seleccionado.
@@ -44,7 +45,7 @@ Al llegar un conteo, el servidor lo compara automáticamente:
 
 ## Cómo resolver una diferencia
 
-- **"Cruce automático"** → vincula de una vez las diferencias que cuadran con facturas y notas crédito sincronizadas de Siigo.
+- **"Cruce automático"** → vincula de una vez las diferencias que cuadran con los movimientos de inventario de esa bodega: facturas (restan), notas crédito y compras (suman) y ajustes de inventario sincronizados de Siigo, más las [notas de ensamble](/docs/plataforma-web/notas-de-ensamble) registradas en Oblicua.
 - **"Vincular sugerido"** / **"Justificar"** → la deja **Justificada** con un documento soporte.
 - **"Justificar con traslado"** → la deja **Trasladada** con un traslado registrado en [Traslados entre bodegas](/docs/plataforma-web/traslados-entre-bodegas).
 - **"Corregir cantidad"** → corrige lo contado (por ejemplo, apareció una caja escondida), con comentario obligatorio.

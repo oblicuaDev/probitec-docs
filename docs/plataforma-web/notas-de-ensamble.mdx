@@ -1,0 +1,57 @@
+---
+sidebar_position: 7.6
+title: Notas de ensamble
+---
+
+# Notas de ensamble
+
+Una **nota de ensamble** toma varios productos (los **componentes**) de una bodega y produce otro producto (el **ensamblado**) en esa misma bodega. Por ejemplo: con 2 soportes y 4 sprays se arman 2 kits.
+
+Revisamos la API de Siigo contra la cuenta real y **Siigo no permite consultar las notas de ensamble** (a diferencia de las facturas, notas crédito, compras y ajustes de inventario, que sí se traen solas en la [sincronización](/docs/plataforma-web/sincronizacion)). Por eso las notas de ensamble se registran aquí, en **Notas de Ensamble** del menú.
+
+## Por qué importa
+
+Si en una bodega se arman kits y nadie lo registra, el conteo muestra **sobrante** del kit y **faltante** de cada componente, aunque el inventario esté bien. Registrada la nota, la [conciliación](/docs/plataforma-web/gestion-de-diferencias) la usa para justificar esas diferencias automáticamente:
+
+- El producto ensamblado **suma** las unidades producidas en la bodega.
+- Cada componente **resta** la cantidad consumida en la bodega.
+
+## Registrar una nota a mano
+
+En **"Registrar nota de ensamble"**:
+
+1. **Número de nota**: el de Siigo (por ejemplo, NE-101). Un número ya registrado se rechaza para no duplicarlo.
+2. **Fecha** y **Bodega** donde se hizo el ensamble.
+3. **Producto ensamblado** (código; el campo sugiere productos del catálogo) y las **unidades producidas**.
+4. **Componentes consumidos**: un renglón por insumo, con la cantidad **total** consumida (no por unidad). **"Agregar componente"** suma renglones.
+5. **Observaciones**, si hace falta.
+
+El formulario avisa antes de guardar si algo no cuadra: código que no está en el catálogo, cantidad inválida o un componente igual al producto ensamblado.
+
+## Cargar varias notas con Excel
+
+En **"Cargar varias notas (Excel)"**, el botón **"Plantilla"** descarga un Excel con estas columnas:
+
+| Columna | Qué va |
+|---|---|
+| Número de nota | Las filas con el mismo número forman una sola nota. |
+| Fecha (AAAA-MM-DD) | Fecha del ensamble. |
+| Bodega | Nombre o código (la hoja «Bodegas» los lista). Todas las filas de una nota van en la misma bodega. |
+| Tipo | **Ensamblado** (una sola fila por nota) o **Componente** (una por insumo). |
+| Código de producto | Debe existir en el catálogo de Siigo. |
+| Cantidad | Unidades producidas (ensamblado) o consumidas en total (componente). |
+| Observaciones | Opcional. |
+
+Al subir el archivo se muestra una **vista previa** de cada nota. Las que tienen problemas (sin fila «Ensamblado», bodegas distintas, códigos inexistentes…) aparecen en rojo y **no se registran**; el botón registra solo las correctas e indica cuántas se omitieron.
+
+## Notas registradas
+
+La tabla de abajo lista las notas con su número, fecha, bodega, producto ensamblado y cantidad de componentes. Un clic en la fila muestra el detalle de los componentes. Tiene **filtro por bodega**.
+
+El estado indica si la nota está **Disponible** o ya fue **Usada en conciliación** (justificó alguna diferencia).
+
+## Anular una nota
+
+Si una nota se registró por error (bodega o cantidades equivocadas), **"Anular"** la elimina pidiendo un comentario obligatorio. Una nota **Usada en conciliación** no se puede anular: primero hay que revertir la justificación de esas diferencias.
+
+Registrar y anular notas lo pueden hacer **Administrador** y **Supervisor**; Conciliador y Auditor las consultan. Ver [Roles y permisos](/docs/roles-y-permisos).

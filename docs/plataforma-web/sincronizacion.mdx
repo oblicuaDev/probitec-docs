@@ -5,22 +5,40 @@ title: Administración de sincronización
 
 # Administración de sincronización
 
-Pantalla de estado técnico: muestra si los distintos puntos de integración del sistema están funcionando, sin entrar a ver conteos ni diferencias puntuales. Se llega a ella desde el acceso rápido del [Dashboard](/docs/plataforma-web/dashboard).
+Pantalla para traer la información de Siigo y revisar el estado de cada punto de integración. Se llega a ella desde el acceso rápido del [Dashboard](/docs/plataforma-web/dashboard).
+
+## Sincronizar con Siigo
+
+El botón **"Sincronizar con Siigo"** trae de Siigo, desde la fecha del [inventario inicial](/docs/plataforma-web/inventario-inicial):
+
+| Documento de Siigo | Efecto en el inventario de la bodega |
+|---|---|
+| **Facturas de venta** | Restan las unidades vendidas. |
+| **Notas crédito** | Suman lo devuelto. |
+| **Compras** | Suman lo comprado. Solo se traen las compras con ítems de producto; las de servicios o gastos no mueven inventario. |
+| **Ajustes de inventario** | Suman o restan según cada línea del ajuste, en su bodega. |
+
+También actualiza el **catálogo de productos** y las **existencias por bodega** que reporta Siigo.
+
+Cada documento queda como **movimientos de inventario** (producto, cantidad con signo, bodega y fecha), que el **cruce automático** usa para justificar diferencias en [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias). Al terminar, la pantalla ejecuta ese cruce y muestra un resumen: cuántas facturas, notas crédito, ajustes y compras llegaron, cuántos movimientos se registraron y cuántas diferencias se vincularon solas.
+
+:::note Lo que Siigo no entrega
+Siigo no permite consultar por su API los **traslados entre bodegas** ni las **notas de ensamble**. Se registran en Oblicua: ver [Traslados entre bodegas](/docs/plataforma-web/traslados-entre-bodegas) y [Notas de ensamble](/docs/plataforma-web/notas-de-ensamble).
+
+Si Siigo falla al entregar algún tramo de documentos, el resumen lo indica para que se vuelva a sincronizar más tarde.
+:::
 
 ## Indicadores
 
-- **Última sincronización**: hace cuánto llegó el conteo más reciente desde la app móvil.
-- **Conteos sincronizados**: total histórico de conteos recibidos.
-- **Conciliación**: confirma que corre en modo automático.
-- **Integraciones pendientes**: cuántas de las tareas de abajo todavía no están configuradas.
+- **Último conteo recibido** desde la app móvil.
+- **Conteos sincronizados**: total histórico.
+- **Documentos de Siigo** y **Movimientos de inventario** registrados.
 
 ## Estado de la sincronización
 
-Lista de las 4 tareas del flujo de datos, cada una con su estado (**Operativa** o **Pendiente**):
+- **App Android RFID → plataforma**: cuándo llegó el último conteo.
+- **Inventario inicial**: si está cargado y desde qué fecha se traen los documentos de Siigo.
+- **Siigo → documentos y movimientos**: totales, fecha del último movimiento y productos del catálogo.
+- **Conciliación automática**: cada conteo recibido se concilia contra lo esperado y se cruza con los movimientos.
 
-- **App Android RFID → Supabase**: los conteos se sincronizan al finalizar en el dispositivo.
-- **Conciliación automática**: cada conteo recibido se concilia contra el inventario esperado.
-- **Exportación a ERP Siigo**.
-- **Webhooks / tareas programadas**.
-
-Solo **Administrador** puede gestionar esta configuración; Supervisor y Auditor pueden verla en modo lectura. Ver [Roles y permisos](/docs/roles-y-permisos).
+Pueden sincronizar **Administrador**, **Supervisor** y **Conciliador**; el Auditor solo ve. Ver [Roles y permisos](/docs/roles-y-permisos).

@@ -11,7 +11,11 @@ El recorrido completo de un conteo, combinando la app móvil y la plataforma web
 
 ## Antes del primer conteo (una sola vez por bodega)
 
-**Supervisor** · Carga el [inventario inicial](/docs/plataforma-web/inventario-inicial) de la bodega con la plantilla de Excel y, si hay cajas o kits rotulados con códigos propios, registra sus [unidades de agrupación](/docs/plataforma-web/unidades-de-agrupacion).
+**Supervisor** · Carga el [inventario inicial](/docs/plataforma-web/inventario-inicial) de la bodega con la plantilla de Excel (o desde el reporte de saldos de Siigo, con todas las bodegas a la vez) y, si hay cajas o kits rotulados con códigos propios, registra sus [unidades de agrupación](/docs/plataforma-web/unidades-de-agrupacion).
+
+## Durante la operación (Supervisor)
+
+Siigo no entrega por API los traslados ni las notas de ensamble: regístralos en Oblicua apenas ocurran, para que expliquen las diferencias del siguiente conteo. Ver [Traslados entre bodegas](/docs/plataforma-web/traslados-entre-bodegas) y [Notas de ensamble](/docs/plataforma-web/notas-de-ensamble).
 
 ## En la bodega: contar (rol Bodega, app móvil)
 
@@ -37,11 +41,11 @@ Revisa el detalle y el resumen y pulsa **"Guardar conteo para verificación"**. 
 Al llegar el conteo, el servidor compara producto por producto lo **esperado** (último conteo cerrado o inventario inicial) contra lo **encontrado**, y genera los faltantes y sobrantes. Ver [Conteos RFID](/docs/plataforma-web/conteos-rfid).
 
 ### 5. Sincronizar con Siigo (Conciliador o Supervisor)
-Trae las facturas, notas crédito y existencias por bodega más recientes. Ver [Sincronización](/docs/plataforma-web/sincronizacion).
+Trae las facturas, notas crédito, compras, ajustes de inventario y existencias por bodega más recientes. Ver [Sincronización](/docs/plataforma-web/sincronizacion).
 
 ### 6. Justificar las diferencias (Conciliador)
 En [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias), cada diferencia se deja:
-- **Justificada** con una factura o nota crédito (el **cruce automático** hace la mayoría),
+- **Justificada** con una factura, nota crédito, compra, ajuste de inventario o nota de ensamble (el **cruce automático** hace la mayoría),
 - **Trasladada** con una [nota de traslado](/docs/plataforma-web/traslados-entre-bodegas) (se puede subir el PDF de Siigo),
 - **Omitida** o con la **cantidad corregida**, con comentario, o
 - **Sin soporte**, si nada la explica.
@@ -69,7 +73,7 @@ Los conteos cerrados quedan en **Historial**, y cada acción sensible queda en *
 | Estado | Qué significa |
 |---|---|
 | **Pendiente** | Detectada, todavía sin revisar. Bloquea el cierre. |
-| **Justificada** | La explica un documento de Siigo (o una corrección de cantidad). |
+| **Justificada** | La explica un documento de Siigo, una nota de ensamble (o una corrección de cantidad). |
 | **Trasladada** | La explica un traslado entre bodegas. |
 | **Omitida** | Se retiró del conteo, con comentario. |
 | **No justificada** | El Conciliador no encontró soporte; pasa a ajuste de inventario. |

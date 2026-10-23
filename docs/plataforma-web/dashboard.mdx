@@ -16,15 +16,29 @@ Vista general del estado del inventario, primera pantalla al entrar a la consola
 
 Un selector de rango de fechas (con botón "Limpiar") acota **todos** los indicadores y gráficos de esta pantalla a un periodo específico — conteos, verificaciones, diferencias y ajustes de inventario — para no mezclar datos de meses distintos. Sin fechas seleccionadas, se muestra el histórico completo.
 
+## Filtro por bodega
+
+A la derecha del periodo, el selector **"Todas las bodegas"** acota los indicadores y gráficos a los conteos de una sola bodega. La bodega elegida se mantiene al pasar a [Conteos RFID](/docs/plataforma-web/conteos-rfid), [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias) y [Notas de ensamble](/docs/plataforma-web/notas-de-ensamble), y el navegador la recuerda para la próxima vez.
+
 ## Indicadores (KPIs)
 
-Conteos pendientes, **Verificados**, conteos con diferencias, conteos cerrados, productos conciliados, productos con diferencias, ajustes realizados y última sincronización.
+Conteos pendientes, **Verificados**, conteos con diferencias, conteos cerrados, productos conciliados, productos con diferencias, ajustes realizados y **última sincronización con Siigo** (hace cuánto se sincronizó por última vez).
 
 ## Gráficos
 
 - **Conteos por día**: volumen de conteos recibidos en la semana.
 - **Distribución de estados**: proporción de conteos pendientes / conciliados / con diferencias / cerrados.
 - **Diferencias por bodega**: en qué bodegas se concentran más diferencias.
+
+## Inventario por bodega
+
+Tabla con una fila por bodega que tenga inventario inicial o conteos:
+
+- **Productos con saldo** y **unidades iniciales** del [inventario inicial](/docs/plataforma-web/inventario-inicial) vigente. Si la bodega tiene productos en negativo, se indica cuántos (por ejemplo, «19 neg.») y el total aparece en rojo cuando es negativo.
+- **Inventario inicial**: **Cargado** (con la fecha), **Sin cargar** o **Bloqueado** (la bodega ya tiene un conteo cerrado).
+- **Conteos** (y cuántos siguen abiertos), **último conteo** y **diferencias pendientes**.
+
+Un clic en una fila filtra todo el dashboard por esa bodega; otro clic (o **"Ver todas las bodegas"**) quita el filtro. Las bodegas sin saldo ni conteos no se listan.
 
 ## Estado de integraciones
 
