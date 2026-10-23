@@ -52,15 +52,23 @@ En [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias), el **
 Un mismo traslado normalmente resuelve **dos** diferencias (el faltante en la bodega de origen y el sobrante en la de destino) — aplícalo una vez sobre cada una.
 :::
 
-## Vista previa: registrar el traslado en Siigo
+## Registrar el traslado en Siigo
 
-Aunque Siigo no tiene un endpoint de "traslados", sí permite crear comprobantes contables genéricos que pueden llevar producto, cantidad y bodega en Débito/Crédito — una forma indirecta de dejarlo anotado en la contabilidad.
+Siigo no tiene un documento de traslado en su API, pero sí permite crear **ajustes de inventario** («A-…»). Un traslado registrado **a mano** en Oblicua se puede llevar a Siigo como un ajuste de dos líneas:
 
-Sobre un traslado sin usar todavía (con **código de producto**), el botón **"Registrar en Siigo"** muestra el comprobante exacto que se enviaría, con un botón **"Confirmar registro (simulado)"**.
+- **Sale** la cantidad de la bodega de origen.
+- **Entra** la misma cantidad a la bodega de destino.
 
-:::caution 
-Por ahora es una simulación
-No se está llamando a Siigo de verdad — falta confirmar con contabilidad el código de cuenta y el tipo de comprobante exactos. Al confirmar, el traslado queda marcado **Simulado** y se crea un documento interno que el [cruce de documentos](/docs/plataforma-web/validacion-documental) ya puede sugerir como justificación de una diferencia, igual que con una factura real.
+Las existencias por bodega en Siigo quedan movidas igual que con una nota de traslado. La contrapartida es la cuenta **531010** y el tercero, PROBITEC SAS.
+
+En el historial, el botón **"Registrar en Siigo"** (necesita código de producto) abre una ventana con las dos líneas y pide el **costo total** de las unidades trasladadas, que Siigo exige. Al confirmar, la columna Siigo muestra **«Enviado · A-…»**.
+
+:::note Notas cargadas desde Siigo
+Las notas de traslado cargadas desde el **PDF** o la **plantilla de Excel** ya existen en Siigo, así que muestran **«Ya está en Siigo»** y no se vuelven a enviar.
+:::
+
+:::caution Modo de prueba
+Mientras el envío a Siigo esté en **modo de prueba** ([Parámetros de la cuenta](/docs/plataforma-web/parametros-de-la-cuenta)), solo se acepta el producto de prueba **001**.
 :::
 
 Solo Administrador y Supervisor pueden usar esta acción — ver [Roles y permisos](/docs/roles-y-permisos).

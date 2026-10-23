@@ -5,7 +5,7 @@ title: Ajustes de inventario
 
 # Ajustes de inventario
 
-Se usa cuando una diferencia **no puede** sustentarse con una factura, nota crédito o traslado, y hay que forzar la corrección manualmente.
+Se usa cuando una diferencia **no puede** sustentarse con una factura, nota crédito, compra, ajuste de Siigo, nota de ensamble o traslado, y hay que corregir el inventario. El ajuste se puede registrar también en Siigo.
 
 ## Cuándo usarlo
 
@@ -14,13 +14,40 @@ Se usa cuando una diferencia **no puede** sustentarse con una factura, nota cré
 
 ## Registrar un ajuste
 
-1. Llegar aquí desde "Ajuste forzado" en [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias) (la diferencia queda pre-seleccionada).
+1. Llegar aquí desde **"Ajuste de inventario"** en [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias) (la diferencia queda pre-seleccionada).
 2. Elegir el **motivo**.
 3. Indicar el **responsable**.
 4. Escribir la **justificación** (mínimo 10 caracteres) y, si hace falta, observaciones adicionales.
-5. Pulsar **"Registrar ajuste"**.
+5. Dejar marcada **"Registrar también en Siigo"** (ver abajo) e indicar el **costo total** de las unidades ajustadas.
+6. Pulsar **"Registrar ajuste"**.
 
 La diferencia queda marcada como **Ajustada**.
+
+## Registro en Siigo
+
+Con **"Registrar también en Siigo"** marcado, el ajuste se crea en Siigo como un **ajuste de inventario** («A-…»), en la **bodega del conteo**:
+
+| Diferencia | En Siigo |
+|---|---|
+| **Faltante** | **Sale** la cantidad faltante de la bodega. |
+| **Sobrante** | **Entra** la cantidad sobrante a la bodega. |
+
+- La contrapartida contable es la cuenta **531010** y el tercero es PROBITEC SAS.
+- Siigo exige el **costo total** de las unidades ajustadas (mayor que cero); el formulario lo pide antes de enviar.
+- El formulario muestra exactamente qué se va a registrar (por ejemplo «sale 2 unidad(es) de 13000740 de la bodega Principal»).
+- Al terminar se muestra el número que asignó Siigo (por ejemplo **A-742**).
+
+Si Siigo rechaza el envío, el ajuste queda registrado en Oblicua y en el historial aparece **Error** (al pasar el cursor se ve el motivo) con el botón **"Reintentar"**. Los ajustes registrados sin envío muestran **"Enviar"**.
+
+:::note Solo los ajustes van a Siigo
+Las diferencias **justificadas** con un documento, **trasladadas**, **omitidas** o con la **cantidad corregida** no se envían a Siigo: se explican con movimientos que ya existen allá, y subirlas los duplicaría. Solo el ajuste de inventario corrige las existencias en Siigo.
+:::
+
+:::caution Modo de prueba
+Mientras el envío a Siigo esté en **modo de prueba** ([Parámetros de la cuenta](/docs/plataforma-web/parametros-de-la-cuenta)), solo se acepta el producto de prueba **001 · PRUEBAS DE AJUSTE OBLICUA**. Para los demás productos hay que desmarcar el envío o pedir al administrador que lo active.
+:::
+
+Siigo rechaza dos ajustes casi iguales (mismo producto y cantidad) enviados con pocos minutos de diferencia, como protección contra duplicados. Si pasa, espera unos minutos y usa **"Reintentar"**.
 
 :::caution 
 Acción irreversible
@@ -29,4 +56,4 @@ El ajuste queda registrado permanentemente en la auditoría y **no puede reverti
 
 ## Historial de ajustes
 
-Debajo del formulario hay un listado de todos los ajustes ya registrados (fecha, diferencia, producto, motivo, responsable y justificación), con su propio **filtro por rango de fechas** para revisar un periodo específico.
+Debajo del formulario hay un listado de todos los ajustes ya registrados (fecha, diferencia, producto, motivo, responsable, justificación y **Siigo**: el número «A-…» o el estado del envío), con su propio **filtro por rango de fechas** para revisar un periodo específico.
