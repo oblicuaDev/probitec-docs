@@ -3,9 +3,13 @@ sidebar_position: 7.6
 title: Notas de ensamble
 ---
 
+import { Captura } from '@site/src/components/Captura';
+
 # Notas de ensamble
 
 Una **nota de ensamble** toma varios productos (los **componentes**) de una bodega y produce otro producto (el **ensamblado**) en esa misma bodega. Por ejemplo: con 2 soportes y 4 sprays se arman 2 kits.
+
+<Captura web src="/img/plataforma-web/22-notas-de-ensamble.png" alt="Pantalla Notas de ensamble con el formulario de registro y la carga por Excel" pie="Notas de ensamble" />
 
 Revisamos la API de Siigo contra la cuenta real y **Siigo no permite consultar las notas de ensamble** (a diferencia de las facturas, notas crédito, compras y ajustes de inventario, que sí se traen solas en la [sincronización](/docs/plataforma-web/sincronizacion)). Por eso las notas de ensamble se registran aquí, en **Notas de Ensamble** del menú.
 
