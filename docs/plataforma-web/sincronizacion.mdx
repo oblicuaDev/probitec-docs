@@ -24,6 +24,12 @@ El botón **"Sincronizar con Siigo"** trae de Siigo, desde la fecha del [inventa
 
 También actualiza el **catálogo de productos** y las **existencias por bodega** que reporta Siigo.
 
+### Sincronización automática
+
+La misma información se trae sola **todas las noches a las 2:00 a. m. (hora de Colombia)**. Cada ejecución queda registrada en [Auditoría](/docs/plataforma-web/auditoria) como **"Sincronización con Siigo"**, hecha por **Sincronización automática**; si falla, aparece como **"Sincronización automática fallida"** con el motivo.
+
+La ejecución nocturna solo **trae los documentos**: para que esos movimientos justifiquen diferencias ya existentes, pulsa el botón, que además ejecuta el **cruce automático**. Úsalo también si necesitas ver un movimiento de Siigo antes de la noche.
+
 Cada documento queda como **movimientos de inventario** (producto, cantidad con signo, bodega y fecha), que el **cruce automático** usa para justificar diferencias en [Gestión de diferencias](/docs/plataforma-web/gestion-de-diferencias). Al terminar, la pantalla ejecuta ese cruce y muestra un resumen: cuántas facturas, notas crédito, ajustes y compras llegaron, cuántos movimientos se registraron y cuántas diferencias se vincularon solas.
 
 :::note Lo que Siigo no entrega
