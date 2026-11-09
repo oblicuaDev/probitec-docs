@@ -20,6 +20,21 @@ Si en una bodega se arman kits y nadie lo registra, el conteo muestra **sobrante
 - El producto ensamblado **suma** las unidades producidas en la bodega.
 - Cada componente **resta** la cantidad consumida en la bodega.
 
+## Cargar el PDF de Siigo (recomendado)
+
+Siigo entrega la nota de ensamble en PDF. En **"Cargar notas (PDF de Siigo o Excel)"** selecciona uno o varios PDF tal como los descarga Siigo. Se leen solos:
+
+| En el PDF | En la plataforma |
+|---|---|
+| **No.** (por ejemplo, NE-1-1138) | Número de nota |
+| **Fecha de elaboración** | Fecha |
+| **Entrada de producto** | Producto ensamblado: **suma** esa cantidad |
+| **Salida de producto** | Componentes: cada uno **resta** su cantidad requerida |
+| **Bodega** | Bodega de la nota |
+| **Observaciones** | Observaciones |
+
+Antes de guardar verás una **vista previa** de cada nota. Solo se registran las correctas; aparecen en rojo y **no se registran** las que tengan un código que no esté en el catálogo, una bodega no reconocida, más de una bodega en la misma nota, o una fila que no se haya podido leer. Una nota ya registrada también se rechaza, así que volver a subir el mismo PDF no la duplica.
+
 ## Registrar una nota a mano
 
 En **"Registrar nota de ensamble"**:
@@ -34,7 +49,7 @@ El formulario avisa antes de guardar si algo no cuadra: código que no está en 
 
 ## Cargar varias notas con Excel
 
-En **"Cargar varias notas (Excel)"**, el botón **"Plantilla"** descarga un Excel con estas columnas:
+Si prefieres la plantilla, en esa misma tarjeta el botón **"Plantilla"** descarga un Excel con estas columnas:
 
 | Columna | Qué va |
 |---|---|
