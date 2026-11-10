@@ -1,0 +1,36 @@
+---
+sidebar_position: 2.2
+title: Consulta de existencias
+---
+
+# Consulta de existencias
+
+Responde a la pregunta **"¿cuánto hay del producto X y en qué bodegas?"**. Se abre desde el menú lateral en **Consulta de existencias** y la pueden usar todos los roles.
+
+## Cómo se usa
+
+1. Escribe en el buscador el **código**, parte de la **descripción** o la **marca** del producto.
+2. Elige el producto en la lista (o presiona **Enter** para tomar el primero).
+3. La pantalla muestra:
+   - **Total Siigo**: la suma del saldo del producto en todas las bodegas.
+   - **Bodegas con saldo**: en cuántas bodegas hay unidades.
+   - Una tabla con **una fila por bodega**.
+
+## Qué muestra cada columna
+
+| Columna | Qué significa |
+|---|---|
+| **Bodega** | Nombre y código de la bodega. |
+| **Saldo Siigo** | Unidades que Siigo reporta en esa bodega según la última sincronización (la fecha aparece en el encabezado de la tabla). |
+| **Último conteo RFID** | El conteo más reciente de esa bodega que incluyó el producto, con su fecha y estado. Al hacer clic se abre el [Detalle del conteo](/docs/plataforma-web/detalle-del-conteo). |
+| **Esperado** | Lo que el sistema esperaba encontrar en ese conteo. |
+| **Encontrado** | Lo que el conteo RFID encontró físicamente. |
+| **Diferencia** | Encontrado menos esperado en ese conteo: en **rojo** si faltó, en **naranja** si sobró. |
+
+Por defecto se ocultan las bodegas donde el producto está en cero y no tiene conteos. La casilla **"Ocultar bodegas en cero"** permite verlas todas.
+
+## Para tener en cuenta
+
+- El **saldo Siigo** es tan reciente como la última [sincronización](/docs/plataforma-web/sincronizacion). Los movimientos registrados en Siigo después de esa hora no se ven todavía.
+- El **último conteo** es una foto del día en que se contó, así que puede no coincidir con el saldo de hoy si hubo ventas, compras o traslados después.
+- Un saldo **negativo** aparece en rojo: indica que en Siigo salió más de lo que entró en esa bodega y conviene revisarlo.
