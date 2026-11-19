@@ -14,6 +14,18 @@ Ajustes que aplican a toda la cuenta: qué código llevan las etiquetas y qué m
 
 <Captura web src="/img/plataforma-web/21-parametros-de-la-cuenta-v2.png" alt="Pantalla de parámetros de la cuenta" pie="Parámetros de la cuenta" />
 
+## Orígenes de conteo
+
+Decide con qué métodos puede contar el operario desde el móvil al [elegir la bodega](/docs/app-movil/seleccion-de-bodega):
+
+| Origen | Qué hace |
+|---|---|
+| **RFID** | Lectura con el lector RFD40. Cada caja suma las unidades que contiene. |
+| **Código de barras** | Pistoleando el EPC, el código Siigo, el código de caja (`AG-…`) o un EAN registrado. |
+| **Manual** | Buscando el producto o la caja y digitando la cantidad. |
+
+Desactiva los que este cliente no necesite: así el selector de modo de conteo en el móvil solo muestra las opciones activas. Debe quedar **al menos un origen activo**. Solo el administrador puede cambiarlo, y el cambio queda en la auditoría.
+
 ## Código en las etiquetas
 
 Define qué código va en la etiqueta y al inicio del EPC (código + «A» + serial):
